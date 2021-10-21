@@ -12,14 +12,23 @@ import java.util.List;
 public class Model {
     private final ObjectProperty<Color> color;
     private final FloatProperty size;
-    private TypeOfShape typeOfShape;
+    private Shape currentShape;
 
     List<Shape> shapes = new ArrayList<>();
 
     public Model() {
         this.color = new SimpleObjectProperty<>();
         this.size = new SimpleFloatProperty();
-        typeOfShape = TypeOfShape.DEFAULT;
+        currentShape = new Rectangle(); //DEFAULT??
+
+    }
+
+    public Shape getCurrentShape() {
+        return currentShape;
+    }
+
+    public void setCurrentShape(Shape currentShape) {
+        this.currentShape = currentShape;
     }
 
     public Color getColor() {
@@ -46,11 +55,4 @@ public class Model {
         this.size.set(size);
     }
 
-    public TypeOfShape getTypeOfShape() {
-        return typeOfShape;
-    }
-
-    public void setTypeOfShape(TypeOfShape typeOfShape) {
-        this.typeOfShape = typeOfShape;
-    }
 }

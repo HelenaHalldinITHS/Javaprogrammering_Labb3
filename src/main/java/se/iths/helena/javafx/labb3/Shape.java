@@ -7,14 +7,15 @@ public class Shape {
     private double x;
     private double y;
     private double size;
-    private TypeOfShape type;
 
-    public Shape(Color color, TypeOfShape type, double size, double x, double y) {
+    public Shape(Color color, double size, double x, double y) {
         this.color = color;
         this.size = size;
         this.x = x;
         this.y = y;
-        this.type = type;
+    }
+
+    public Shape(){
     }
 
     public double getSize() {
@@ -53,11 +54,13 @@ public class Shape {
         return this;
     }
 
-    public TypeOfShape getType() {
-        return type;
+
+    public boolean coordinatesInShapesArea(double x, double y){
+        return false; ///SKRIV OM!!!!!
     }
 
-    public void setType(TypeOfShape type) {
-        this.type = type;
+    public Shape copyOf(){
+        return new Shape(this.getColor(),this.getSize(),this.getX(),this.getY());
     }
+
 }

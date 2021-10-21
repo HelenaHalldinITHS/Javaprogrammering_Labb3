@@ -54,38 +54,33 @@ public class DrawingController {
     public void onCanvasClicked(MouseEvent mouseEvent) {
         if (normalMode)
             canvasClickedInNormalMode(mouseEvent);
-        else
+        else {
             canvasClickedInSelectMode(mouseEvent);
+        }
         draw();
     }
 
+
     private void canvasClickedInSelectMode(MouseEvent mouseEvent) {
         var clickedShape = model.shapes.stream()
-                .filter(shape -> isClickedOn(mouseEvent,shape))
+                .filter(shape -> shape.coordinatesInShapesArea(mouseEvent.getX(),mouseEvent.getY()))
                 .findAny();
         clickedShape.ifPresent(this::setNewShapeFromSelectMode);
     }
 
+
     private void setNewShapeFromSelectMode(Shape shape) {
-        model.setTypeOfShape(shape.getType());
         shape.setSize(model.getSize()).setColor(model.getColor());
     }
 
-    private boolean isClickedOn(MouseEvent mouseEvent, Shape shape) {
-        //Implement!
-
-
-        // (imagain all was squars:)
-        return between(mouseEvent.getX(),shape.getX(),shape.getX()+shape.getSize()) &&
-        between(mouseEvent.getY(),shape.getY(),shape.getY()+shape.getSize());
-    }
-
-    private boolean between(double variable, double minValueInclusive, double maxValueInclusive) {
-        return variable >= minValueInclusive && variable <= maxValueInclusive;
-    }
 
     private void canvasClickedInNormalMode(MouseEvent mouseEvent) {
-        Shape newShape = new Shape(model.getColor(), model.getTypeOfShape(), model.getSize(), mouseEvent.getX(), mouseEvent.getY());
+        Shape newShape = model.getCurrentShape()
+                .setColor(model.getColor())
+                .setSize(model.getSize())
+                .setX(mouseEvent.getX())
+                .setY(mouseEvent.getY()).copyOf();
+
         lastAddedShapes.push(newShape);
         model.shapes.add(newShape);
     }
@@ -95,19 +90,20 @@ public class DrawingController {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (var shape : model.shapes) {
             gc.setFill(shape.getColor());
-            switch (shape.getType()) {
-                case RECTANGLE -> gc.fillRect(shape.getX(), shape.getY(), shape.getSize(), shape.getSize()*0.7);
-                case CIRCLE -> gc.fillOval(shape.getX(), shape.getY(), shape.getSize(), shape.getSize());
+            if (shape.getClass().equals(Rectangle.class)){
+                gc.fillRect(shape.getX(), shape.getY(), shape.getSize(), shape.getSize()*0.7);
+            } else if (shape.getClass().equals(Circle.class)){
+                gc.fillOval(shape.getX(),shape.getY(),shape.getSize(),shape.getSize());
             }
         }
     }
 
     public void onRectangleButtonClick(ActionEvent actionEvent) {
-        model.setTypeOfShape(TypeOfShape.RECTANGLE);
+        model.setCurrentShape(new Rectangle());
     }
 
     public void onCircleButtonClick(ActionEvent actionEvent) {
-        model.setTypeOfShape(TypeOfShape.CIRCLE);
+        model.setCurrentShape(new Circle());
     }
 
     public void onUndoButtonClicked(ActionEvent actionEvent) {
