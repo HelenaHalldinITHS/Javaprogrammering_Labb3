@@ -9,13 +9,14 @@ import javafx.scene.text.Text;
 
 public class DrawingController {
 
+    public ResizableCanvas canvas;
     @FXML
     private Button circleButton;
     @FXML
     private Button rectangleButton;
     @FXML
     private Button triangleButton;
-
+    
     @FXML
     private ColorPicker colorPicker;
     @FXML
@@ -30,4 +31,7 @@ public class DrawingController {
     @FXML
     private Button modeButton;
 
+    
+    
+    
 }

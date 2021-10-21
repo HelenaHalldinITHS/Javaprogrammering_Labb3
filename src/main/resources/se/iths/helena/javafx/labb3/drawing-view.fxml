@@ -12,13 +12,14 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import se.iths.helena.javafx.labb3.ResizableCanvas?>
 
+<?import javafx.scene.layout.StackPane?>
 <SplitPane dividerPositions="0.10" orientation="VERTICAL" maxHeight="-Infinity" maxWidth="-Infinity"
            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
            xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="se.iths.helena.javafx.labb3.DrawingController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="440.0">
-
         <ToolBar prefHeight="40.0" prefWidth="443.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                  AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <Button styleClass="shape-button" fx:id="triangleButton" mnemonicParsing="false" text="Triangle"/>
@@ -36,9 +37,13 @@
             <Button fx:id="undoButton" mnemonicParsing="false" text="undo"/>
             <Button fx:id="modeButton" mnemonicParsing="false" text="select mode"/>
         </ToolBar>
-
     </AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="185.0" prefWidth="291.0"/>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="185.0" prefWidth="291.0">
+        <StackPane prefWidth="400" prefHeight="800" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                   AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <ResizableCanvas fx:id="canvas" />
+        </StackPane>
+    </AnchorPane>
     <stylesheets>
         <URL value="@stylesheet.css"/>
     </stylesheets>
