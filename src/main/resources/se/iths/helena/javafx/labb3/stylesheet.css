@@ -1,17 +1,18 @@
 
 /*Style for all buttons*/
 Button {
-    -fx-background-color: blue;
-    -fx-padding: 10px;
+    -fx-padding: 5px;
 }
 
 /*Style for shape buttons*/
 .shape-button {
-    -fx-background-color: red;
-    -fx-padding: 10px;
+    -fx-font-size: 15px;
 }
 
-#selectModeButton {
-    -fx-background-color: green;
-    -fx-font-size: 20px;
+#modeButton {
+
+}
+
+#undoButton {
+
 }
