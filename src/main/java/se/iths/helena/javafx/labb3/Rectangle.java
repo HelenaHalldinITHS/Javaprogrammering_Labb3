@@ -19,10 +19,6 @@ public class Rectangle extends Shape {
                 between(y,getY(),getY()+getSize()*ratio);
     }
 
-    private boolean between(double variable, double minValueInclusive, double maxValueInclusive) {
-        return variable >= minValueInclusive && variable <= maxValueInclusive;
-    }
-
     @Override
     public Shape copyOf(){
         return new Rectangle(this.getColor(),this.getSize(),this.getX(),this.getY());

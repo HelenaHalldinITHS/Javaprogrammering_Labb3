@@ -13,10 +13,12 @@ public class Circle extends Shape{
     }
 
     //----NOT IMPLEMENTED YET----///
+    /*
     @Override
     public boolean coordinatesInShapesArea(double x, double y){
         return false;
     }
+     */
 
 
     @Override

@@ -55,12 +55,17 @@ public class Shape {
     }
 
 
+    //default square around shape
     public boolean coordinatesInShapesArea(double x, double y){
-        return false; ///SKRIV OM!!!!!
+        return between(x,getX(),getX()+getSize()) &&
+                between(y,getY(),getY()+getSize());
     }
 
     public Shape copyOf(){
         return new Shape(this.getColor(),this.getSize(),this.getX(),this.getY());
     }
 
+    protected boolean between(double variable, double minValueInclusive, double maxValueInclusive) {
+        return variable >= minValueInclusive && variable <= maxValueInclusive;
+    }
 }

@@ -54,9 +54,8 @@ public class DrawingController {
     public void onCanvasClicked(MouseEvent mouseEvent) {
         if (normalMode)
             canvasClickedInNormalMode(mouseEvent);
-        else {
+        else
             canvasClickedInSelectMode(mouseEvent);
-        }
         draw();
     }
 
