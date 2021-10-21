@@ -18,12 +18,11 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="440.0">
         <ToolBar prefHeight="40.0" prefWidth="443.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                  AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <Button styleClass="shape-button" fx:id="triangleButton" mnemonicParsing="false" onAction="#onTriangleButtonClick" text="Triangle"/>
             <Button styleClass="shape-button" fx:id="circleButton" mnemonicParsing="false" onAction="#onCircleButtonClick" text="Circle"/>
             <Button styleClass="shape-button" fx:id="rectangleButton" mnemonicParsing="false" onAction="#onRectangleButtonClick" text="Rectangle"/>
             <ColorPicker fx:id="colorPicker" layoutX="7.0" layoutY="95.0"/>
             <Text fx:id="sizeText" layoutX="35.0" layoutY="34.0" text="Size:"/>
-            <Slider fx:id="sizeSlider" blockIncrement="1" majorTickUnit="5" max="25.0" showTickLabels="true" showTickMarks="true" />
+            <Slider fx:id="sizeSlider" blockIncrement="1" majorTickUnit="20" max="100.0" showTickLabels="true" showTickMarks="true" />
             <Button fx:id="undoButton" mnemonicParsing="false" onAction="#onUndoButtonClicked" text="undo"/>
             <Button fx:id="modeButton" mnemonicParsing="false" onAction="#onModeButtonClicked" text="select mode"/>
         </ToolBar>

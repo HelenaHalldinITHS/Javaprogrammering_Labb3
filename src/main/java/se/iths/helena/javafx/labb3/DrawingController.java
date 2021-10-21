@@ -2,13 +2,19 @@ package se.iths.helena.javafx.labb3;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.Stack;
+
 public class DrawingController {
     Model model;
-    
+    Deque<Shape> lastAddedShapes = new ArrayDeque<>();
+
     @FXML
     private ResizableCanvas canvas;
     @FXML
@@ -37,27 +43,43 @@ public class DrawingController {
 
     public void initialize() {
         model = new Model();
-    
-        //Bindings!!
-    }
 
-    public void onTriangleButtonClick(ActionEvent actionEvent) {
-    }
-
-    public void onRectangleButtonClick(ActionEvent actionEvent) {
-    }
-
-    public void onCircleButtonClick(ActionEvent actionEvent) {
-    }
-
-    public void onUndoButtonClicked(ActionEvent actionEvent) {
-    }
-
-    public void onModeButtonClicked(ActionEvent actionEvent) {
+        colorPicker.valueProperty().bindBidirectional(model.colorProperty());
+        sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
     }
 
     public void onCanvasClicked(MouseEvent mouseEvent) {
-        var context = canvas.getGraphicsContext2D();
-        context.fillOval(mouseEvent.getX(),mouseEvent.getY(),25,25);
+        Shape newShape = new Shape(model.getColor(), model.getTypeOfShape(), model.getSize(), mouseEvent.getX(), mouseEvent.getY());
+        lastAddedShapes.push(newShape);
+        model.shapes.add(newShape);
+        draw();
+    }
+
+    private void draw() {
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        for (var shape : model.shapes) {
+            gc.setFill(shape.getColor());
+            switch (shape.getType()) {
+                case RECTANGLE -> gc.fillRect(shape.getX(), shape.getY(), shape.getSize(), shape.getSize()*0.7);
+                case CIRCLE -> gc.fillOval(shape.getX(), shape.getY(), shape.getSize(), shape.getSize());
+            }
+        }
+    }
+
+    public void onRectangleButtonClick(ActionEvent actionEvent) {
+        model.setTypeOfShape(TypeOfShape.RECTANGLE);
+    }
+
+    public void onCircleButtonClick(ActionEvent actionEvent) {
+        model.setTypeOfShape(TypeOfShape.CIRCLE);
+    }
+
+    public void onUndoButtonClicked(ActionEvent actionEvent) {
+        model.shapes.remove(lastAddedShapes.pop());
+        draw();
+    }
+
+    public void onModeButtonClicked(ActionEvent actionEvent) {
     }
 }
