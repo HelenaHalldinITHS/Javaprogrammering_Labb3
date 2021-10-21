@@ -14,7 +14,6 @@ import java.util.Stack;
 public class DrawingController {
     Model model;
     Deque<Shape> lastAddedShapes = new ArrayDeque<>();
-    Boolean selectMode = false;
 
     @FXML
     private ResizableCanvas canvas;
@@ -22,6 +21,8 @@ public class DrawingController {
     private Button circleButton;
     @FXML
     private Button rectangleButton;
+    @FXML
+    private Button triangleButton;
     @FXML
     private ColorPicker colorPicker;
     @FXML
@@ -42,21 +43,12 @@ public class DrawingController {
 
     public void initialize() {
         model = new Model();
+
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
     }
 
     public void onCanvasClicked(MouseEvent mouseEvent) {
-        if (selectMode)
-            canvasClickedInSelectMode(mouseEvent);
-        canvasClickedInNormalMode(mouseEvent);
-    }
-
-    private void canvasClickedInSelectMode(MouseEvent mouseEvent) {
-       //IMPLEMENT
-    }
-
-    private void canvasClickedInNormalMode(MouseEvent mouseEvent) {
         Shape newShape = new Shape(model.getColor(), model.getTypeOfShape(), model.getSize(), mouseEvent.getX(), mouseEvent.getY());
         lastAddedShapes.push(newShape);
         model.shapes.add(newShape);
@@ -89,6 +81,5 @@ public class DrawingController {
     }
 
     public void onModeButtonClicked(ActionEvent actionEvent) {
-        selectMode = !selectMode;
     }
 }
