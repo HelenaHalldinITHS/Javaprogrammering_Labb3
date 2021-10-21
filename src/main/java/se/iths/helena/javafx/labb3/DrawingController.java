@@ -46,6 +46,9 @@ public class DrawingController {
 
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
+
+        canvas.widthProperty().addListener(observable -> draw());
+        canvas.heightProperty().addListener(observable -> draw());
     }
 
     public void onCanvasClicked(MouseEvent mouseEvent) {
