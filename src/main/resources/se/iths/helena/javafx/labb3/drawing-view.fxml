@@ -15,6 +15,7 @@
 <?import se.iths.helena.javafx.labb3.ResizableCanvas?>
 
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.TextField?>
 <SplitPane dividerPositions="0.10" orientation="VERTICAL" maxHeight="-Infinity" maxWidth="-Infinity"
            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
            xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
@@ -22,20 +23,14 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="440.0">
         <ToolBar prefHeight="40.0" prefWidth="443.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                  AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <Button styleClass="shape-button" fx:id="triangleButton" mnemonicParsing="false" text="Triangle"/>
-            <Button styleClass="shape-button" fx:id="circleButton" mnemonicParsing="false" text="Circle"/>
-            <Button styleClass="shape-button" fx:id="rectangleButton" mnemonicParsing="false" text="Rectangle"/>
+            <Button styleClass="shape-button" fx:id="triangleButton" mnemonicParsing="false" onAction="#onTriangleButtonClick" text="Triangle"/>
+            <Button styleClass="shape-button" fx:id="circleButton" mnemonicParsing="false" onAction="#onCircleButtonClick" text="Circle"/>
+            <Button styleClass="shape-button" fx:id="rectangleButton" mnemonicParsing="false" onAction="#onRectangleButtonClick" text="Rectangle"/>
             <ColorPicker fx:id="colorPicker" layoutX="7.0" layoutY="95.0"/>
-            <VBox>
-                <HBox>
-                    <Text fx:id="sizeText" layoutX="35.0" layoutY="34.0" text="Size:"/>
-                    <Label fx:id="sizeLabel" layoutX="78.0" layoutY="34.0" prefHeight="17.0" prefWidth="63.0"
-                           text="Label"/>
-                </HBox>
-                <Slider fx:id="sizeSlider" layoutX="3.0" layoutY="50.0"/>
-            </VBox>
-            <Button fx:id="undoButton" mnemonicParsing="false" text="undo"/>
-            <Button fx:id="modeButton" mnemonicParsing="false" text="select mode"/>
+            <Text fx:id="sizeText" layoutX="35.0" layoutY="34.0" text="Size:"/>
+            <Slider fx:id="sizeSlider" blockIncrement="1" majorTickUnit="5" max="25.0" showTickLabels="true" showTickMarks="true" />
+            <Button fx:id="undoButton" mnemonicParsing="false" onAction="#onUndoButtonClicked" text="undo"/>
+            <Button fx:id="modeButton" mnemonicParsing="false" onAction="#onModeButtonClicked" text="select mode"/>
         </ToolBar>
     </AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="185.0" prefWidth="291.0">
