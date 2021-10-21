@@ -1,0 +1,17 @@
+
+/*Style for all buttons*/
+Button {
+    -fx-background-color: blue;
+    -fx-padding: 10px;
+}
+
+/*Style for shape buttons*/
+.shape-button {
+    -fx-background-color: red;
+    -fx-padding: 10px;
+}
+
+#selectModeButton {
+    -fx-background-color: green;
+    -fx-font-size: 20px;
+}
