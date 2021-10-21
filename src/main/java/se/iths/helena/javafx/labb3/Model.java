@@ -13,7 +13,6 @@ public class Model {
     private final ObjectProperty<Color> color;
     private final FloatProperty size;
     private TypeOfShape typeOfShape;
-
     List<Shape> shapes = new ArrayList<>();
 
     public Model() {

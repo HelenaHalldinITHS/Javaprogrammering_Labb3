@@ -22,7 +22,7 @@
             <Button styleClass="shape-button" fx:id="rectangleButton" mnemonicParsing="false" onAction="#onRectangleButtonClick" text="Rectangle"/>
             <ColorPicker fx:id="colorPicker" layoutX="7.0" layoutY="95.0"/>
             <Text fx:id="sizeText" layoutX="35.0" layoutY="34.0" text="Size:"/>
-            <Slider fx:id="sizeSlider" blockIncrement="1" majorTickUnit="20" max="100.0" showTickLabels="true" showTickMarks="true" />
+            <Slider fx:id="sizeSlider" blockIncrement="1" majorTickUnit="20" max="120.0" showTickLabels="true" showTickMarks="true" />
             <Button fx:id="undoButton" mnemonicParsing="false" onAction="#onUndoButtonClicked" text="undo"/>
             <Button fx:id="modeButton" mnemonicParsing="false" onAction="#onModeButtonClicked" text="select mode"/>
         </ToolBar>
