@@ -1,10 +1,9 @@
 package se.iths.helena.javafx.labb3;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class DrawingController {
@@ -55,5 +54,10 @@ public class DrawingController {
     }
 
     public void onModeButtonClicked(ActionEvent actionEvent) {
+    }
+
+    public void onCanvasClicked(MouseEvent mouseEvent) {
+        var context = canvas.getGraphicsContext2D();
+        context.fillOval(mouseEvent.getX(),mouseEvent.getY(),25,25);
     }
 }
