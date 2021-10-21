@@ -9,11 +9,11 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Stack;
 
 public class DrawingController {
     Model model;
     Deque<Shape> lastAddedShapes = new ArrayDeque<>();
+    Boolean normalMode = true;
 
     @FXML
     private ResizableCanvas canvas;
@@ -49,10 +49,42 @@ public class DrawingController {
     }
 
     public void onCanvasClicked(MouseEvent mouseEvent) {
+        if (normalMode)
+            canvasClickedInNormalMode(mouseEvent);
+        else
+            canvasClickedInSelectMode(mouseEvent);
+        draw();
+    }
+
+    private void canvasClickedInSelectMode(MouseEvent mouseEvent) {
+        var clickedShape = model.shapes.stream()
+                .filter(shape -> isClickedOn(mouseEvent,shape))
+                .findAny();
+        clickedShape.ifPresent(this::setNewShapeFromSelectMode);
+    }
+
+    private void setNewShapeFromSelectMode(Shape shape) {
+        model.setTypeOfShape(shape.getType());
+        shape.setSize(model.getSize()).setColor(model.getColor());
+    }
+
+    private boolean isClickedOn(MouseEvent mouseEvent, Shape shape) {
+        //Implement!
+
+
+        // (imagain all was squars:)
+        return between(mouseEvent.getX(),shape.getX(),shape.getX()+shape.getSize()) &&
+        between(mouseEvent.getY(),shape.getY(),shape.getY()+shape.getSize());
+    }
+
+    private boolean between(double variable, double minValueInclusive, double maxValueInclusive) {
+        return variable >= minValueInclusive && variable <= maxValueInclusive;
+    }
+
+    private void canvasClickedInNormalMode(MouseEvent mouseEvent) {
         Shape newShape = new Shape(model.getColor(), model.getTypeOfShape(), model.getSize(), mouseEvent.getX(), mouseEvent.getY());
         lastAddedShapes.push(newShape);
         model.shapes.add(newShape);
-        draw();
     }
 
     private void draw() {
@@ -81,5 +113,6 @@ public class DrawingController {
     }
 
     public void onModeButtonClicked(ActionEvent actionEvent) {
+        normalMode = !normalMode;
     }
 }

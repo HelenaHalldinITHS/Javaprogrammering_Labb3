@@ -21,8 +21,9 @@ public class Shape {
         return size;
     }
 
-    public void setSize(double size) {
+    public Shape setSize(double size) {
         this.size = size;
+        return this;
     }
 
     public Color getColor() {
