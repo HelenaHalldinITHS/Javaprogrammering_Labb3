@@ -15,7 +15,7 @@ import java.util.List;
 public class Model {
     private final ObjectProperty<Color> color;
     private final FloatProperty size;
-    private String currentShape;
+    private ShapeType currentShape;
     private List<Shape> shapes = new ArrayList<>();
     private Deque<Shape> lastAddedShapes = new ArrayDeque<>();
 
@@ -25,7 +25,7 @@ public class Model {
 
     }
 
-    public void setInitialValues(String shape, Color color, Float size){
+    public void setInitialValues(ShapeType shape, Color color, Float size){
         this.currentShape = shape;
         this.color.setValue(color);
         this.size.setValue(size);
@@ -47,11 +47,11 @@ public class Model {
         this.shapes = shapes;
     }
 
-    public String getCurrentShape() {
+    public ShapeType getCurrentShape() {
         return currentShape;
     }
 
-    public void setCurrentShape(String currentShape) {
+    public void setCurrentShape(ShapeType currentShape) {
         this.currentShape = currentShape;
     }
 

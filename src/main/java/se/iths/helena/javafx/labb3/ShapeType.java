@@ -1,6 +1,6 @@
 package se.iths.helena.javafx.labb3;
 
-public enum Shapes {
+public enum ShapeType {
     Rectangle,
     Circle
 }

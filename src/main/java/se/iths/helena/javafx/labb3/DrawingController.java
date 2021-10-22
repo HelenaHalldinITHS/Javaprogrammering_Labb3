@@ -41,7 +41,7 @@ public class DrawingController {
 
     public void initialize() {
         model = new Model();
-        model.setInitialValues("Rectangle", Color.BLUE,50f);
+        model.setInitialValues(ShapeType.Rectangle, Color.BLUE,50f);
 
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
@@ -98,11 +98,11 @@ public class DrawingController {
     }
 
     public void onRectangleButtonClick(ActionEvent actionEvent) {
-        model.setCurrentShape("RECTANGLE");
+        model.setCurrentShape(ShapeType.Rectangle);
     }
 
     public void onCircleButtonClick(ActionEvent actionEvent) {
-        model.setCurrentShape("CIRCLE");
+        model.setCurrentShape(ShapeType.Circle);
     }
 
     public void onUndoButtonClicked(ActionEvent actionEvent) {
