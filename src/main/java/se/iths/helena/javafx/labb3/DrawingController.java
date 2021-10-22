@@ -69,7 +69,11 @@ public class DrawingController {
 
 
     private void setNewShapeFromSelectMode(Shape shape) {
-        shape.setSize(model.getSize()).setColor(model.getColor());
+        Shape newShape = shape.copyOf().setSize(model.getSize()).setColor(model.getColor());
+        model.getShapes().add(newShape);
+        model.getShapes().remove(shape);
+
+        model.getLastAddedShapes().push(newShape);
     }
 
 
