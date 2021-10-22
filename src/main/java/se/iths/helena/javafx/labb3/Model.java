@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.paint.Color;
 
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
@@ -21,7 +22,13 @@ public class Model {
     public Model() {
         this.color = new SimpleObjectProperty<>();
         this.size = new SimpleFloatProperty();
-        this.currentShape = "RECTANGLE";
+
+    }
+
+    public void setInitialValues(String shape, Color color, Float size){
+        this.currentShape = shape;
+        this.color.setValue(color);
+        this.size.setValue(size);
     }
 
     public List<Shape> getShapes() {

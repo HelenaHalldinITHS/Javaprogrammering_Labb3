@@ -5,10 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 
 public class DrawingController {
     Model model;
@@ -42,6 +41,7 @@ public class DrawingController {
 
     public void initialize() {
         model = new Model();
+        model.setInitialValues("Rectangle", Color.BLUE,50f);
 
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
