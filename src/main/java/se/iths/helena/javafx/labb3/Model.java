@@ -13,12 +13,20 @@ public class Model {
     private final ObjectProperty<Color> color;
     private final FloatProperty size;
     private String currentShape;
-    List<Shape> shapes = new ArrayList<>();
+    private List<Shape> shapes = new ArrayList<>();
 
     public Model() {
         this.color = new SimpleObjectProperty<>();
         this.size = new SimpleFloatProperty();
         currentShape = "RECTANGLE";
+    }
+
+    public List<Shape> getShapes() {
+        return shapes;
+    }
+
+    public void setShapes(List<Shape> shapes) {
+        this.shapes = shapes;
     }
 
     public String getCurrentShape() {

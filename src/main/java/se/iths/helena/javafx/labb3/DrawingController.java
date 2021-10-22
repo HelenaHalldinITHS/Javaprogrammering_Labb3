@@ -15,7 +15,6 @@ public class DrawingController {
     Deque<Shape> lastAddedShapes = new ArrayDeque<>();
     Boolean normalMode = true;
 
-
     @FXML
     private ResizableCanvas canvas;
     @FXML
@@ -63,7 +62,7 @@ public class DrawingController {
 
 
     private void canvasClickedInSelectMode(MouseEvent mouseEvent) {
-        var clickedShape = model.shapes.stream()
+        var clickedShape = model.getShapes().stream()
                 .filter(shape -> shape.coordinatesInShapesArea(mouseEvent.getX(),mouseEvent.getY()))
                 .findAny();
         clickedShape.ifPresent(this::setNewShapeFromSelectMode);
@@ -83,13 +82,13 @@ public class DrawingController {
                 .setY(mouseEvent.getY()).copyOf();
 
         lastAddedShapes.push(newShape);
-        model.shapes.add(newShape);
+        model.getShapes().add(newShape);
     }
 
     private void draw() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        for (var shape : model.shapes) {
+        for (var shape : model.getShapes()) {
             gc.setFill(shape.getColor());
             if (shape.getClass().equals(Rectangle.class)){
                 gc.fillRect(shape.getX(), shape.getY(), shape.getSize(), shape.getSize()*0.7);
@@ -108,7 +107,7 @@ public class DrawingController {
     }
 
     public void onUndoButtonClicked(ActionEvent actionEvent) {
-        model.shapes.remove(lastAddedShapes.pop());
+        model.getShapes().remove(lastAddedShapes.pop());
         draw();
     }
 
