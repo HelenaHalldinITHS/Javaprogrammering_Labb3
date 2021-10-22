@@ -80,7 +80,7 @@ public class DrawingController {
                 .setX(mouseEvent.getX())
                 .setY(mouseEvent.getY()).copyOf();
 
-        model.lastAddedShapes.push(newShape);
+        model.getLastAddedShapes().push(newShape);
         model.getShapes().add(newShape);
     }
 
@@ -106,7 +106,7 @@ public class DrawingController {
     }
 
     public void onUndoButtonClicked(ActionEvent actionEvent) {
-        model.getShapes().remove(model.lastAddedShapes.pop());
+        model.getShapes().remove(model.getLastAddedShapes().pop());
         draw();
     }
 

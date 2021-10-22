@@ -16,7 +16,7 @@ public class Model {
     private final FloatProperty size;
     private String currentShape;
     private List<Shape> shapes = new ArrayList<>();
-    Deque<Shape> lastAddedShapes = new ArrayDeque<>();
+    private Deque<Shape> lastAddedShapes = new ArrayDeque<>();
 
     public Model() {
         this.color = new SimpleObjectProperty<>();
@@ -26,6 +26,14 @@ public class Model {
 
     public List<Shape> getShapes() {
         return shapes;
+    }
+
+    public Deque<Shape> getLastAddedShapes() {
+        return lastAddedShapes;
+    }
+
+    public void setLastAddedShapes(Deque<Shape> lastAddedShapes) {
+        this.lastAddedShapes = lastAddedShapes;
     }
 
     public void setShapes(List<Shape> shapes) {
