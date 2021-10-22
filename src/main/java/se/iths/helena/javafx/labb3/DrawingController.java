@@ -12,7 +12,6 @@ import java.util.Deque;
 
 public class DrawingController {
     Model model;
-    Deque<Shape> lastAddedShapes = new ArrayDeque<>();
     Boolean normalMode = true;
 
     @FXML
@@ -81,7 +80,7 @@ public class DrawingController {
                 .setX(mouseEvent.getX())
                 .setY(mouseEvent.getY()).copyOf();
 
-        lastAddedShapes.push(newShape);
+        model.lastAddedShapes.push(newShape);
         model.getShapes().add(newShape);
     }
 
@@ -107,7 +106,7 @@ public class DrawingController {
     }
 
     public void onUndoButtonClicked(ActionEvent actionEvent) {
-        model.getShapes().remove(lastAddedShapes.pop());
+        model.getShapes().remove(model.lastAddedShapes.pop());
         draw();
     }
 
