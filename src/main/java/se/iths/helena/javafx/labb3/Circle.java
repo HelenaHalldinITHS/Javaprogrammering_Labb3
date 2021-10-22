@@ -2,7 +2,7 @@ package se.iths.helena.javafx.labb3;
 
 import javafx.scene.paint.Color;
 
-public class Circle extends Shape{
+public class Circle extends Shape {
 
     public Circle(Color color, double size, double x, double y) {
         super(color, size, x, y);
@@ -11,15 +11,6 @@ public class Circle extends Shape{
     public Circle(){
         super();
     }
-
-    //----NOT IMPLEMENTED YET----///
-    /*
-    @Override
-    public boolean coordinatesInShapesArea(double x, double y){
-        return false;
-    }
-     */
-
 
     @Override
     public Shape copyOf(){

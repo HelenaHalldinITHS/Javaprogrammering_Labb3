@@ -1,12 +1,27 @@
 
-/*Style for all buttons*/
-Button {
+Text{
     -fx-padding: 5px;
+    -fx-font-size: 15px;
+    -fx-font-family: "Times New Roman";
 }
 
-/*Style for shape buttons*/
-.shape-button {
+Slider{
+    -fx-font-family: "Times New Roman";
+}
+
+ColorPicker{
     -fx-font-size: 15px;
+    -fx-font-family: "Times New Roman";
+}
+Button {
+    -fx-padding: 5px;
+    -fx-font-size: 15px;
+    -fx-font-family: "Times New Roman";
+}
+
+
+.shape-button {
+
 }
 
 #modeButton {
