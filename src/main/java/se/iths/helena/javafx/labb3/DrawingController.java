@@ -15,6 +15,7 @@ public class DrawingController {
     Deque<Shape> lastAddedShapes = new ArrayDeque<>();
     Boolean normalMode = true;
 
+
     @FXML
     private ResizableCanvas canvas;
     @FXML
@@ -34,8 +35,8 @@ public class DrawingController {
     @FXML
     private Slider sizeSlider;
 
-    public DrawingController() {
-    }
+
+    public DrawingController() {}
 
     public DrawingController(Model model) {
         this.model = model;
@@ -49,6 +50,7 @@ public class DrawingController {
 
         canvas.widthProperty().addListener(observable -> draw());
         canvas.heightProperty().addListener(observable -> draw());
+
     }
 
     public void onCanvasClicked(MouseEvent mouseEvent) {
@@ -74,7 +76,7 @@ public class DrawingController {
 
 
     private void canvasClickedInNormalMode(MouseEvent mouseEvent) {
-        Shape newShape = model.getCurrentShape()
+        Shape newShape = new ShapeFactory().getShape(model.getCurrentShape())
                 .setColor(model.getColor())
                 .setSize(model.getSize())
                 .setX(mouseEvent.getX())
@@ -98,11 +100,11 @@ public class DrawingController {
     }
 
     public void onRectangleButtonClick(ActionEvent actionEvent) {
-        model.setCurrentShape(new Rectangle());
+        model.setCurrentShape("RECTANGLE");
     }
 
     public void onCircleButtonClick(ActionEvent actionEvent) {
-        model.setCurrentShape(new Circle());
+        model.setCurrentShape("CIRCLE");
     }
 
     public void onUndoButtonClicked(ActionEvent actionEvent) {

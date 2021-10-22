@@ -12,22 +12,20 @@ import java.util.List;
 public class Model {
     private final ObjectProperty<Color> color;
     private final FloatProperty size;
-    private Shape currentShape;
-
+    private String currentShape;
     List<Shape> shapes = new ArrayList<>();
 
     public Model() {
         this.color = new SimpleObjectProperty<>();
         this.size = new SimpleFloatProperty();
-        currentShape = new Rectangle(); //DEFAULT??
-
+        currentShape = "RECTANGLE";
     }
 
-    public Shape getCurrentShape() {
+    public String getCurrentShape() {
         return currentShape;
     }
 
-    public void setCurrentShape(Shape currentShape) {
+    public void setCurrentShape(String currentShape) {
         this.currentShape = currentShape;
     }
 
