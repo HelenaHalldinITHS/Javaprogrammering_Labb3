@@ -2,7 +2,7 @@ package se.iths.helena.javafx.labb3;
 
 import javafx.scene.paint.Color;
 
-public class Shape {
+public abstract class Shape {
     private Color color;
     private double x;
     private double y;
@@ -54,16 +54,8 @@ public class Shape {
         return this;
     }
 
-
-    //default square around shape
-    public boolean coordinatesInShapesArea(double x, double y){
-        return between(x,getX(),getX()+getSize()) &&
-                between(y,getY(),getY()+getSize());
-    }
-
-    public Shape copyOf(){
-        return new Shape(this.getColor(),this.getSize(),this.getX(),this.getY());
-    }
+    public abstract boolean coordinatesInShapesArea(double x, double y);
+    public abstract Shape copyOf();
 
     protected boolean between(double variable, double minValueInclusive, double maxValueInclusive) {
         return variable >= minValueInclusive && variable <= maxValueInclusive;
