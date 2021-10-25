@@ -9,11 +9,6 @@ public class Circle extends Shape {
         super(color, size, x, y);
     }
 
-    public Circle(){
-        super();
-    }
-
-
     @Override
     public boolean coordinatesInShapesArea(double x, double y) {
         double radie = this.getSize()/2;

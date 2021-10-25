@@ -16,9 +16,6 @@ public abstract class Shape implements DrawableInJavaFx {
         this.y = y;
     }
 
-    public Shape(){
-    }
-
     public double getSize() {
         return size;
     }

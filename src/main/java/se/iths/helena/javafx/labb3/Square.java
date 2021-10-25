@@ -5,13 +5,8 @@ import javafx.scene.paint.Color;
 
 public class Square extends Shape {
 
-
     public Square(Color color, double size, double x, double y) {
         super(color, size, x, y);
-    }
-
-    public Square(){
-        super();
     }
 
     @Override
