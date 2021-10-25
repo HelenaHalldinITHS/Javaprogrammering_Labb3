@@ -91,8 +91,8 @@ public class DrawingController {
     private void draw() {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+
         for (var shape : model.getShapes()) {
-            gc.setFill(shape.getColor());
             shape.draw(gc);
         }
     }

@@ -32,6 +32,7 @@ public class Circle extends Shape {
 
     @Override
     public void draw(GraphicsContext gc) {
+        gc.setFill(this.getColor());
         gc.fillOval(this.getX(),this.getY(),this.getSize(),this.getSize());
     }
 }

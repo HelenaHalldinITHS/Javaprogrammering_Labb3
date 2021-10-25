@@ -31,6 +31,7 @@ public class Rectangle extends Shape {
 
     @Override
     public void draw(GraphicsContext gc) {
+        gc.setFill(this.getColor());
         gc.fillRect(this.getX(), this.getY(), this.getSize(), this.getSize()*ratio);
     }
 
