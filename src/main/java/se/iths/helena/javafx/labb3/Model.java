@@ -2,18 +2,19 @@ package se.iths.helena.javafx.labb3;
 
 import javafx.beans.property.*;
 import javafx.scene.paint.Color;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+
+import java.util.*;
 
 public class Model {
     private final ObjectProperty<Color> color;
     private final FloatProperty size;
     private final ObjectProperty<ShapeType> selectedShapeType;
+    private final BooleanProperty inSelectMode;
+
     private List<Shape> shapes = new ArrayList<>();
     private Deque<Shape> lastAddedShapes = new ArrayDeque<>();
-    private final BooleanProperty inSelectMode;
+    private final Map<Shape, Shape> replacements = new HashMap<>();
+
 
     public Model() {
         this.color = new SimpleObjectProperty<>();
@@ -22,33 +23,33 @@ public class Model {
         this.selectedShapeType = new SimpleObjectProperty<>();
     }
 
-    public void setInitialValues(ShapeType shape, Color color, Float size){
+    public void setInitialValues(ShapeType shape, Color color, Float size) {
         this.selectedShapeType.setValue(shape);
         this.color.setValue(color);
         this.size.setValue(size);
     }
 
-    public void setSelectedShapeType(ShapeType selectedShapeType){
+    public void setSelectedShapeType(ShapeType selectedShapeType) {
         this.selectedShapeType.setValue(selectedShapeType);
     }
 
-    public ShapeType getSelectedShapeType(){
+    public ShapeType getSelectedShapeType() {
         return this.selectedShapeType.getValue();
     }
 
-    public ObjectProperty<ShapeType> selectedShapeTypeProperty(){
+    public ObjectProperty<ShapeType> selectedShapeTypeProperty() {
         return this.selectedShapeType;
     }
 
-    public void setInSelectMode(boolean inSelectMode){
+    public void setInSelectMode(boolean inSelectMode) {
         this.inSelectMode.setValue(inSelectMode);
     }
 
-    public boolean isInSelectMode(){
+    public boolean isInSelectMode() {
         return inSelectMode.getValue();
     }
 
-    public BooleanProperty inSelectModeProperty(){
+    public BooleanProperty inSelectModeProperty() {
         return inSelectMode;
     }
 
@@ -94,4 +95,7 @@ public class Model {
         this.size.set(size);
     }
 
+    public Map<Shape, Shape> getReplacements() {
+        return replacements;
+    }
 }

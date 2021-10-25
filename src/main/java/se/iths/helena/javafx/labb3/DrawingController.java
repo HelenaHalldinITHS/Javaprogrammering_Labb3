@@ -63,6 +63,7 @@ public class DrawingController {
         model.getShapes().add(newShape);
         model.getShapes().remove(shape);
         model.getLastAddedShapes().push(newShape);
+        model.getReplacements().put(newShape,shape);
     }
 
     private void canvasClickedInNormalMode(MouseEvent mouseEvent) {
@@ -88,7 +89,13 @@ public class DrawingController {
     }
 
     public void onUndoButtonClicked(ActionEvent actionEvent) {
-        model.getShapes().remove(model.getLastAddedShapes().pop());
+        Shape lastAddedShape = model.getLastAddedShapes().pop();
+
+        model.getShapes().remove(lastAddedShape);
+        if (model.getReplacements().containsKey(lastAddedShape)){
+            model.getShapes().add(model.getReplacements().get(lastAddedShape));
+            model.getReplacements().remove(lastAddedShape);
+        }
         draw();
     }
 
