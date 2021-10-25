@@ -1,5 +1,6 @@
 package se.iths.helena.javafx.labb3;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public abstract class Shape {
@@ -55,9 +56,8 @@ public abstract class Shape {
     }
 
     public abstract boolean coordinatesInShapesArea(double x, double y);
+
     public abstract Shape copyOf();
 
-    protected boolean between(double variable, double minValueInclusive, double maxValueInclusive) {
-        return variable >= minValueInclusive && variable <= maxValueInclusive;
-    }
+    public abstract void draw(GraphicsContext gc);
 }

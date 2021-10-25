@@ -1,5 +1,6 @@
 package se.iths.helena.javafx.labb3;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Circle extends Shape {
@@ -27,5 +28,10 @@ public class Circle extends Shape {
     @Override
     public Shape copyOf(){
         return new Circle(this.getColor(),this.getSize(),this.getX(),this.getY());
+    }
+
+    @Override
+    public void draw(GraphicsContext gc) {
+        gc.fillOval(this.getX(),this.getY(),this.getSize(),this.getSize());
     }
 }

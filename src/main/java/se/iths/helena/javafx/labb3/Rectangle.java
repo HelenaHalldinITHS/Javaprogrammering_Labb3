@@ -1,5 +1,6 @@
 package se.iths.helena.javafx.labb3;
 
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public class Rectangle extends Shape {
@@ -15,12 +16,23 @@ public class Rectangle extends Shape {
 
     @Override
     public boolean coordinatesInShapesArea(double x, double y){
-        return between(x,getX(),getX()+getSize()) &&
-                between(y,getY(),getY()+getSize()*ratio);
+        return isBetween(x,getX(),getX()+getSize()) &&
+                isBetween(y,getY(),getY()+getSize()*ratio);
+    }
+
+    private boolean isBetween(double value, double minValueInclusive, double maxValueInclusive) {
+        return value >= minValueInclusive && value <= maxValueInclusive;
     }
 
     @Override
     public Shape copyOf(){
         return new Rectangle(this.getColor(),this.getSize(),this.getX(),this.getY());
     }
+
+    @Override
+    public void draw(GraphicsContext gc) {
+        gc.fillRect(this.getX(), this.getY(), this.getSize(), this.getSize()*ratio);
+    }
+
+
 }

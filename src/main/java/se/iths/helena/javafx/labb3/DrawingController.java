@@ -93,11 +93,7 @@ public class DrawingController {
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
         for (var shape : model.getShapes()) {
             gc.setFill(shape.getColor());
-            if (shape.getClass().equals(Rectangle.class)){
-                gc.fillRect(shape.getX(), shape.getY(), shape.getSize(), shape.getSize()*0.7);
-            } else if (shape.getClass().equals(Circle.class)){
-                gc.fillOval(shape.getX(),shape.getY(),shape.getSize(),shape.getSize());
-            }
+            shape.draw(gc);
         }
     }
 
