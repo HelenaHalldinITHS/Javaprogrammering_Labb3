@@ -5,6 +5,7 @@ import javafx.scene.paint.Color;
 
 public class Square extends Shape {
 
+
     public Square(Color color, double size, double x, double y) {
         super(color, size, x, y);
     }
@@ -15,8 +16,9 @@ public class Square extends Shape {
 
     @Override
     public boolean coordinatesInShapesArea(double x, double y){
-        return isBetween(x,getX(),getX()+getSize()) &&
-                isBetween(y,getY(),getY()+getSize());
+        double halfSize = this.getSize()/2;
+        return isBetween(x,getX()-halfSize,getX()+halfSize) &&
+                isBetween(y,getY()-halfSize,getY()+getSize()+halfSize);
     }
 
     private boolean isBetween(double value, double minValueInclusive, double maxValueInclusive) {
@@ -30,8 +32,9 @@ public class Square extends Shape {
 
     @Override
     public void draw(GraphicsContext gc) {
+        double halfSize = this.getSize()/2;
         gc.setFill(this.getColor());
-        gc.fillRect(this.getX(), this.getY(), this.getSize(), this.getSize());
+        gc.fillRect(this.getX()-halfSize, this.getY()-halfSize, this.getSize(), this.getSize());
     }
 
 
