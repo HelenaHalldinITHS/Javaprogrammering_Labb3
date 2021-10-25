@@ -1,9 +1,6 @@
 package se.iths.helena.javafx.labb3;
 
-import javafx.beans.property.FloatProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleFloatProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.*;
 import javafx.scene.paint.Color;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -16,17 +13,30 @@ public class Model {
     private ShapeType currentShape;
     private List<Shape> shapes = new ArrayList<>();
     private Deque<Shape> lastAddedShapes = new ArrayDeque<>();
+    private final BooleanProperty inSelectMode;
 
     public Model() {
         this.color = new SimpleObjectProperty<>();
         this.size = new SimpleFloatProperty();
-
+        inSelectMode = new SimpleBooleanProperty(false);
     }
 
     public void setInitialValues(ShapeType shape, Color color, Float size){
         this.currentShape = shape;
         this.color.setValue(color);
         this.size.setValue(size);
+    }
+
+    public void setInSelectMode(boolean inSelectMode){
+        this.inSelectMode.set(inSelectMode);
+    }
+
+    public boolean isInSelectMode(){
+        return inSelectMode.get();
+    }
+
+    public BooleanProperty inSelectModeProperty(){
+        return inSelectMode;
     }
 
     public List<Shape> getShapes() {

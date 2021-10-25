@@ -9,16 +9,17 @@ import javafx.scene.text.Text;
 
 
 public class DrawingController {
+
     Model model;
     Boolean normalMode = true;
 
+    public CheckBox SelectModeCheckBox;
     public ResizableCanvas canvas;
     public Button circleButton;
     public Button rectangleButton;
     public ColorPicker colorPicker;
     public Text sizeText;
     public Button undoButton;
-    public Button modeButton;
     public Slider sizeSlider;
 
 
@@ -35,6 +36,8 @@ public class DrawingController {
 
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
+
+        SelectModeCheckBox.selectedProperty().bindBidirectional(model.inSelectModeProperty());
 
         canvas.widthProperty().addListener(observable -> draw());
         canvas.heightProperty().addListener(observable -> draw());
@@ -100,7 +103,7 @@ public class DrawingController {
         draw();
     }
 
-    public void onModeButtonClicked(ActionEvent actionEvent) {
+    public void onCheckBoxChecked(ActionEvent actionEvent) {
         normalMode = !normalMode;
     }
 }
