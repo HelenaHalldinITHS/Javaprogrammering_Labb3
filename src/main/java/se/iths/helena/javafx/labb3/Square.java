@@ -18,7 +18,7 @@ public class Square extends Shape {
     public boolean coordinatesInShapesArea(double x, double y){
         double halfSize = this.getSize()/2;
         return isBetween(x,getX()-halfSize,getX()+halfSize) &&
-                isBetween(y,getY()-halfSize,getY()+getSize()+halfSize);
+                isBetween(y,getY()-halfSize,getY()+halfSize);
     }
 
     private boolean isBetween(double value, double minValueInclusive, double maxValueInclusive) {
