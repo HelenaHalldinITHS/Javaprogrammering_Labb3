@@ -16,10 +16,9 @@ public class Circle extends Shape {
         return distance < radie;
     }
 
-
     @Override
-    public Shape copyOf(){
-        return new Circle(this.getColor(),this.getSize(),this.getX(),this.getY());
+    public Shape changeLook(Color color, double size) {
+        return new Circle(color,size,this.getX(),this.getY());
     }
 
     @Override

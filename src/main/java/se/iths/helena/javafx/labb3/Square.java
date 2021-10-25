@@ -21,8 +21,8 @@ public class Square extends Shape {
     }
 
     @Override
-    public Shape copyOf(){
-        return new Square(this.getColor(),this.getSize(),this.getX(),this.getY());
+    public Shape changeLook(Color color, double size) {
+        return new Square(color,size,this.getX(),this.getY());
     }
 
     @Override

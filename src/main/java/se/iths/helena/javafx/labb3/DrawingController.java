@@ -51,18 +51,17 @@ public class DrawingController {
 
 
     private void canvasClickedInSelectMode(MouseEvent mouseEvent) {
-        var clickedShape = model.getShapes().stream()
+        model.getShapes().stream()
                 .filter(shape -> shape.coordinatesInShapesArea(mouseEvent.getX(), mouseEvent.getY()))
-                .findAny();
-        clickedShape.ifPresent(this::setNewShapeFromSelectMode);
+                .reduce((first, second) -> second)
+                .ifPresent(this::setNewShapeFromSelectMode);
     }
 
 
     private void setNewShapeFromSelectMode(Shape shape) {
-        Shape newShape = shape.copyOf().setSize(model.getSize()).setColor(model.getColor());
+        Shape newShape = shape.changeLook(model.getColor(), model.getSize());
         model.getShapes().add(newShape);
         model.getShapes().remove(shape);
-
         model.getLastAddedShapes().push(newShape);
     }
 
