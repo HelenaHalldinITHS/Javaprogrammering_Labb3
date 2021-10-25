@@ -12,11 +12,15 @@ public class Circle extends Shape {
         super();
     }
 
-     // square around circle.....
+
     @Override
     public boolean coordinatesInShapesArea(double x, double y) {
-        return between(x,getX(),getX()+getSize()) &&
-                between(y,getY(),getY()+getSize());
+        double radie = this.getSize()/2;
+        double xCenter = this.getX() + radie;
+        double yCenter = this.getY() + radie;
+        double distance = Math.sqrt(Math.pow(x - xCenter,2) + Math.pow(y - yCenter,2));
+
+        return distance < radie;
     }
 
 
