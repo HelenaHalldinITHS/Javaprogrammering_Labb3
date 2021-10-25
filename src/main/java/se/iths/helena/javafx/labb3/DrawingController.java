@@ -71,9 +71,8 @@ public class DrawingController {
         model.getLastAddedShapes().push(newShape);
     }
 
-
     private void canvasClickedInNormalMode(MouseEvent mouseEvent) {
-        Shape newShape = ShapeFactory.getShape(model.getCurrentShape())
+        Shape newShape = ShapeFactory.getShape(model.getSelectedShapeType())
                 .setColor(model.getColor())
                 .setSize(model.getSize())
                 .setX(mouseEvent.getX())
@@ -92,7 +91,6 @@ public class DrawingController {
         }
     }
 
-
     public void onUndoButtonClicked(ActionEvent actionEvent) {
         model.getShapes().remove(model.getLastAddedShapes().pop());
         draw();
@@ -100,12 +98,5 @@ public class DrawingController {
 
     public void onCheckBoxChecked(ActionEvent actionEvent) {
         normalMode = !normalMode;
-    }
-
-    public void choiceMade(ActionEvent actionEvent) {
-        switch (model.getSelectedShapeType()) {
-            case Circle -> model.setCurrentShape(ShapeType.Circle);
-            case Rectangle -> model.setCurrentShape(ShapeType.Rectangle);
-        }
     }
 }

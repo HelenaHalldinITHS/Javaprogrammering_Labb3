@@ -10,8 +10,7 @@ import java.util.List;
 public class Model {
     private final ObjectProperty<Color> color;
     private final FloatProperty size;
-    private ShapeType currentShape;
-    private ObjectProperty<ShapeType> selectedShapeType;
+    private final ObjectProperty<ShapeType> selectedShapeType;
     private List<Shape> shapes = new ArrayList<>();
     private Deque<Shape> lastAddedShapes = new ArrayDeque<>();
     private final BooleanProperty inSelectMode;
@@ -24,7 +23,7 @@ public class Model {
     }
 
     public void setInitialValues(ShapeType shape, Color color, Float size){
-        this.currentShape = shape;
+        this.selectedShapeType.setValue(shape);
         this.color.setValue(color);
         this.size.setValue(size);
     }
@@ -42,11 +41,11 @@ public class Model {
     }
 
     public void setInSelectMode(boolean inSelectMode){
-        this.inSelectMode.set(inSelectMode);
+        this.inSelectMode.setValue(inSelectMode);
     }
 
     public boolean isInSelectMode(){
-        return inSelectMode.get();
+        return inSelectMode.getValue();
     }
 
     public BooleanProperty inSelectModeProperty(){
@@ -70,13 +69,6 @@ public class Model {
         this.shapes = shapes;
     }
 
-    public ShapeType getCurrentShape() {
-        return currentShape;
-    }
-
-    public void setCurrentShape(ShapeType currentShape) {
-        this.currentShape = currentShape;
-    }
 
     public Color getColor() {
         return color.get();
