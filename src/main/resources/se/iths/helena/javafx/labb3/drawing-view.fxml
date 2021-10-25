@@ -12,6 +12,10 @@
 <?import javafx.scene.layout.StackPane?>
 
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.collections.FXCollections?>
+<?import se.iths.helena.javafx.labb3.ShapeType?>
+
 <SplitPane dividerPositions="0.10" orientation="VERTICAL" maxHeight="-Infinity" maxWidth="-Infinity"
            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
            xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
@@ -19,11 +23,17 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="440.0">
         <ToolBar prefHeight="40.0" prefWidth="443.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                  AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <Button styleClass="shape-button" fx:id="circleButton" mnemonicParsing="false" onAction="#onCircleButtonClick" text="Circle"/>
-            <Button styleClass="shape-button" fx:id="rectangleButton" mnemonicParsing="false" onAction="#onRectangleButtonClick" text="Rectangle"/>
+            <ComboBox fx:id="comboBox"  onAction="#choiceMade" value="Rectangle">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <ShapeType fx:value="Rectangle"/>
+                        <ShapeType fx:value="Circle"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
             <ColorPicker fx:id="colorPicker" layoutX="7.0" layoutY="95.0"/>
             <Text fx:id="sizeText" layoutX="35.0" layoutY="34.0" text="Size:"/>
-            <Slider fx:id="sizeSlider" blockIncrement="1" majorTickUnit="20" max="100.0" showTickLabels="true" showTickMarks="true" />
+            <Slider fx:id="sizeSlider" blockIncrement="1" majorTickUnit="20" showTickLabels="true" showTickMarks="true" />
             <Button fx:id="undoButton" mnemonicParsing="false" onAction="#onUndoButtonClicked" text="undo"/>
             <CheckBox fx:id="SelectModeCheckBox" mnemonicParsing="false" onAction="#onCheckBoxChecked" text="select mode"/>
         </ToolBar>

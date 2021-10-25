@@ -27,7 +27,7 @@ public class Model {
         this.size.setValue(size);
     }
 
-    public void setInSelectMode(boolean inSelectMode){
+    public void setInSetMode(boolean inSelectMode){
         this.inSelectMode.set(inSelectMode);
     }
 
@@ -38,6 +38,7 @@ public class Model {
     public BooleanProperty inSelectModeProperty(){
         return inSelectMode;
     }
+
 
     public List<Shape> getShapes() {
         return shapes;

@@ -10,13 +10,13 @@ import javafx.scene.text.Text;
 
 public class DrawingController {
 
+
     Model model;
     Boolean normalMode = true;
 
+    public ComboBox comboBox;
     public CheckBox SelectModeCheckBox;
     public ResizableCanvas canvas;
-    public Button circleButton;
-    public Button rectangleButton;
     public ColorPicker colorPicker;
     public Text sizeText;
     public Button undoButton;
@@ -90,13 +90,6 @@ public class DrawingController {
         }
     }
 
-    public void onRectangleButtonClick(ActionEvent actionEvent) {
-        model.setCurrentShape(ShapeType.Rectangle);
-    }
-
-    public void onCircleButtonClick(ActionEvent actionEvent) {
-        model.setCurrentShape(ShapeType.Circle);
-    }
 
     public void onUndoButtonClicked(ActionEvent actionEvent) {
         model.getShapes().remove(model.getLastAddedShapes().pop());
@@ -104,6 +97,17 @@ public class DrawingController {
     }
 
     public void onCheckBoxChecked(ActionEvent actionEvent) {
+
         normalMode = !normalMode;
+    }
+
+    public void choiceMade(ActionEvent actionEvent) {
+        var choice = comboBox.getValue();
+
+        if (choice.equals(ShapeType.Circle))
+            model.setCurrentShape(ShapeType.Circle);
+
+        if (choice.equals(ShapeType.Rectangle))
+            model.setCurrentShape(ShapeType.Rectangle);
     }
 }
