@@ -3,7 +3,7 @@ package se.iths.helena.javafx.labb3;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public final class Rectangle extends Shape {
+public class Rectangle extends Shape {
     double ratio = 0.7;
 
     public Rectangle(Color color, double size, double x, double y) {
