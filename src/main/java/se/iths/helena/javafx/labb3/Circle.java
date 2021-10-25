@@ -3,7 +3,7 @@ package se.iths.helena.javafx.labb3;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class Circle extends Shape {
+public final class Circle extends Shape {
 
     public Circle(Color color, double size, double x, double y) {
         super(color, size, x, y);

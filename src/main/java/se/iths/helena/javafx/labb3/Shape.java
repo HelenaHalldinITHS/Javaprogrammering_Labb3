@@ -3,7 +3,7 @@ package se.iths.helena.javafx.labb3;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public abstract class Shape implements DrawableInJavaFx {
+public abstract sealed class Shape implements DrawableInJavaFx permits Circle, Rectangle {
     private Color color;
     private double x;
     private double y;
