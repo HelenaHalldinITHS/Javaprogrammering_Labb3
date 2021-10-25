@@ -14,8 +14,8 @@ public class DrawingController {
     Model model;
     Boolean normalMode = true;
 
-    public ComboBox comboBox;
-    public CheckBox SelectModeCheckBox;
+    public ComboBox<ShapeType> comboBox;
+    public CheckBox selectModeCheckBox;
     public ResizableCanvas canvas;
     public ColorPicker colorPicker;
     public Text sizeText;
@@ -37,7 +37,9 @@ public class DrawingController {
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
 
-        SelectModeCheckBox.selectedProperty().bindBidirectional(model.inSelectModeProperty());
+        comboBox.valueProperty().bindBidirectional(model.selectedShapeTypeProperty());
+
+        selectModeCheckBox.selectedProperty().bindBidirectional(model.inSelectModeProperty());
 
         canvas.widthProperty().addListener(observable -> draw());
         canvas.heightProperty().addListener(observable -> draw());
@@ -97,17 +99,13 @@ public class DrawingController {
     }
 
     public void onCheckBoxChecked(ActionEvent actionEvent) {
-
         normalMode = !normalMode;
     }
 
     public void choiceMade(ActionEvent actionEvent) {
-        var choice = comboBox.getValue();
-
-        if (choice.equals(ShapeType.Circle))
-            model.setCurrentShape(ShapeType.Circle);
-
-        if (choice.equals(ShapeType.Rectangle))
-            model.setCurrentShape(ShapeType.Rectangle);
+        switch (model.getSelectedShapeType()) {
+            case Circle -> model.setCurrentShape(ShapeType.Circle);
+            case Rectangle -> model.setCurrentShape(ShapeType.Rectangle);
+        }
     }
 }

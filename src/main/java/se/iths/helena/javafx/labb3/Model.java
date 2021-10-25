@@ -11,6 +11,7 @@ public class Model {
     private final ObjectProperty<Color> color;
     private final FloatProperty size;
     private ShapeType currentShape;
+    private ObjectProperty<ShapeType> selectedShapeType;
     private List<Shape> shapes = new ArrayList<>();
     private Deque<Shape> lastAddedShapes = new ArrayDeque<>();
     private final BooleanProperty inSelectMode;
@@ -19,6 +20,7 @@ public class Model {
         this.color = new SimpleObjectProperty<>();
         this.size = new SimpleFloatProperty();
         inSelectMode = new SimpleBooleanProperty(false);
+        this.selectedShapeType = new SimpleObjectProperty<>(ShapeType.Rectangle);
     }
 
     public void setInitialValues(ShapeType shape, Color color, Float size){
@@ -27,7 +29,19 @@ public class Model {
         this.size.setValue(size);
     }
 
-    public void setInSetMode(boolean inSelectMode){
+    public void setSelectedShapeType(ShapeType selectedShapeType){
+        this.selectedShapeType.setValue(selectedShapeType);
+    }
+
+    public ShapeType getSelectedShapeType(){
+        return this.selectedShapeType.getValue();
+    }
+
+    public ObjectProperty<ShapeType> selectedShapeTypeProperty(){
+        return this.selectedShapeType;
+    }
+
+    public void setInSelectMode(boolean inSelectMode){
         this.inSelectMode.set(inSelectMode);
     }
 
