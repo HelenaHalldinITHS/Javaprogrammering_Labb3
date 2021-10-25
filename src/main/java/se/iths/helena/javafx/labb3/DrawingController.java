@@ -9,10 +9,7 @@ import javafx.scene.text.Text;
 
 
 public class DrawingController {
-
-
     Model model;
-    Boolean normalMode = true;
 
     public ComboBox<ShapeType> comboBox;
     public CheckBox selectModeCheckBox;
@@ -36,9 +33,7 @@ public class DrawingController {
 
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
-
         comboBox.valueProperty().bindBidirectional(model.selectedShapeTypeProperty());
-
         selectModeCheckBox.selectedProperty().bindBidirectional(model.inSelectModeProperty());
 
         canvas.widthProperty().addListener(observable -> draw());
@@ -47,7 +42,7 @@ public class DrawingController {
     }
 
     public void onCanvasClicked(MouseEvent mouseEvent) {
-        if (normalMode)
+        if (!model.isInSelectMode())
             canvasClickedInNormalMode(mouseEvent);
         else
             canvasClickedInSelectMode(mouseEvent);
@@ -96,7 +91,4 @@ public class DrawingController {
         draw();
     }
 
-    public void onCheckBoxChecked(ActionEvent actionEvent) {
-        normalMode = !normalMode;
-    }
 }
