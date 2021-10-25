@@ -1,7 +1,6 @@
 package se.iths.helena.javafx.labb3;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -13,27 +12,18 @@ public class DrawingController {
     Model model;
     Boolean normalMode = true;
 
-    @FXML
-    private ResizableCanvas canvas;
-    @FXML
-    private Button circleButton;
-    @FXML
-    private Button rectangleButton;
-    @FXML
-    private Button triangleButton;
-    @FXML
-    private ColorPicker colorPicker;
-    @FXML
-    private Text sizeText;
-    @FXML
-    private Button undoButton;
-    @FXML
-    private Button modeButton;
-    @FXML
-    private Slider sizeSlider;
+    public ResizableCanvas canvas;
+    public Button circleButton;
+    public Button rectangleButton;
+    public ColorPicker colorPicker;
+    public Text sizeText;
+    public Button undoButton;
+    public Button modeButton;
+    public Slider sizeSlider;
 
 
-    public DrawingController() {}
+    public DrawingController() {
+    }
 
     public DrawingController(Model model) {
         this.model = model;
@@ -41,7 +31,7 @@ public class DrawingController {
 
     public void initialize() {
         model = new Model();
-        model.setInitialValues(ShapeType.Rectangle, Color.BLUE,50f);
+        model.setInitialValues(ShapeType.Rectangle, Color.BLUE, 50f);
 
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
@@ -62,7 +52,7 @@ public class DrawingController {
 
     private void canvasClickedInSelectMode(MouseEvent mouseEvent) {
         var clickedShape = model.getShapes().stream()
-                .filter(shape -> shape.coordinatesInShapesArea(mouseEvent.getX(),mouseEvent.getY()))
+                .filter(shape -> shape.coordinatesInShapesArea(mouseEvent.getX(), mouseEvent.getY()))
                 .findAny();
         clickedShape.ifPresent(this::setNewShapeFromSelectMode);
     }
@@ -78,11 +68,11 @@ public class DrawingController {
 
 
     private void canvasClickedInNormalMode(MouseEvent mouseEvent) {
-        Shape newShape = new ShapeFactory().getShape(model.getCurrentShape())
+        Shape newShape = ShapeFactory.getShape(model.getCurrentShape())
                 .setColor(model.getColor())
                 .setSize(model.getSize())
                 .setX(mouseEvent.getX())
-                .setY(mouseEvent.getY()).copyOf();
+                .setY(mouseEvent.getY());
 
         model.getLastAddedShapes().push(newShape);
         model.getShapes().add(newShape);
