@@ -12,7 +12,7 @@ public class Model {
     private final BooleanProperty inSelectMode;
 
     private List<Shape> shapes = new ArrayList<>();
-    private Deque<Shape> lastAddedShapes = new ArrayDeque<>();
+    private Deque<Shape> history = new ArrayDeque<>();
     private final Map<Shape, Shape> replacements = new HashMap<>();
 
 
@@ -58,12 +58,12 @@ public class Model {
         return shapes;
     }
 
-    public Deque<Shape> getLastAddedShapes() {
-        return lastAddedShapes;
+    public Deque<Shape> getHistory() {
+        return history;
     }
 
-    public void setLastAddedShapes(Deque<Shape> lastAddedShapes) {
-        this.lastAddedShapes = lastAddedShapes;
+    public void setHistory(Deque<Shape> history) {
+        this.history = history;
     }
 
     public void setShapes(List<Shape> shapes) {
@@ -97,5 +97,32 @@ public class Model {
 
     public Map<Shape, Shape> getReplacements() {
         return replacements;
+    }
+
+    public void replaceShape(Shape newShape, Shape oldShape) {
+        shapes.add(newShape);
+        shapes.remove(oldShape);
+        history.push(newShape);
+        replacements.put(newShape,oldShape);
+    }
+
+    public void addShape(Shape newShape) {
+        shapes.add(newShape);
+        history.push(newShape);
+    }
+
+    public void undo() {
+        Shape lastAddedShape = history.pop();
+        shapes.remove(lastAddedShape);
+        if (replacements.containsKey(lastAddedShape)) {
+            shapes.add(replacements.get(lastAddedShape));
+            replacements.remove(lastAddedShape);
+        }
+    }
+
+    public Optional<Shape> getShapeByCoordinates(double x,double y) {
+        return shapes.stream()
+                .filter(shape -> shape.coordinatesInShapesArea(x, y))
+                .reduce((first, second) -> second);
     }
 }

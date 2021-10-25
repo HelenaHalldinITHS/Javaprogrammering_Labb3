@@ -30,15 +30,12 @@ public class DrawingController {
     public void initialize() {
         model = new Model();
         model.setInitialValues(ShapeType.Square, Color.ROSYBROWN, 100f);
-
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
         comboBox.valueProperty().bindBidirectional(model.selectedShapeTypeProperty());
         selectModeCheckBox.selectedProperty().bindBidirectional(model.inSelectModeProperty());
-
         canvas.widthProperty().addListener(observable -> draw());
         canvas.heightProperty().addListener(observable -> draw());
-
     }
 
     public void onCanvasClicked(MouseEvent mouseEvent) {
@@ -51,28 +48,22 @@ public class DrawingController {
 
 
     private void canvasClickedInSelectMode(MouseEvent mouseEvent) {
-        model.getShapes().stream()
-                .filter(shape -> shape.coordinatesInShapesArea(mouseEvent.getX(), mouseEvent.getY()))
-                .reduce((first, second) -> second)
+        model.getShapeByCoordinates(mouseEvent.getX(),mouseEvent.getY())
                 .ifPresent(this::setNewShapeFromSelectMode);
     }
 
-
     private void setNewShapeFromSelectMode(Shape shape) {
         Shape newShape = shape.changeLook(model.getColor(), model.getSize());
-        model.getShapes().add(newShape);
-        model.getShapes().remove(shape);
-        model.getLastAddedShapes().push(newShape);
-        model.getReplacements().put(newShape,shape);
+        model.replaceShape(newShape, shape);
     }
 
     private void canvasClickedInNormalMode(MouseEvent mouseEvent) {
-        Shape newShape = getNewShape(mouseEvent);
-        model.getLastAddedShapes().push(newShape);
-        model.getShapes().add(newShape);
+        Shape newShape = getNewShapeBySelectedType(mouseEvent);
+        model.addShape(newShape);
+
     }
 
-    private Shape getNewShape(MouseEvent mouseEvent){
+    private Shape getNewShapeBySelectedType(MouseEvent mouseEvent){
         return switch (model.getSelectedShapeType()){
             case Square -> ShapeFactory.getSquare(model.getColor(),model.getSize(),mouseEvent.getX(),mouseEvent.getY());
             case Circle -> ShapeFactory.getCircle(model.getColor(),model.getSize(),mouseEvent.getX(),mouseEvent.getY());
@@ -89,13 +80,7 @@ public class DrawingController {
     }
 
     public void onUndoButtonClicked(ActionEvent actionEvent) {
-        Shape lastAddedShape = model.getLastAddedShapes().pop();
-
-        model.getShapes().remove(lastAddedShape);
-        if (model.getReplacements().containsKey(lastAddedShape)){
-            model.getShapes().add(model.getReplacements().get(lastAddedShape));
-            model.getReplacements().remove(lastAddedShape);
-        }
+        model.undo();
         draw();
     }
 
