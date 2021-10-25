@@ -23,10 +23,10 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="440.0">
         <ToolBar prefHeight="40.0" prefWidth="443.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                  AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <ComboBox fx:id="comboBox" value="Rectangle">
+            <ComboBox fx:id="comboBox" value="Square">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <ShapeType fx:value="Rectangle"/>
+                        <ShapeType fx:value="Square"/>
                         <ShapeType fx:value="Circle"/>
                     </FXCollections>
                 </items>

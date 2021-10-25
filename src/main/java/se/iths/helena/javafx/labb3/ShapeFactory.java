@@ -7,14 +7,14 @@ public class ShapeFactory {
     public static Shape getShape(ShapeType shapeType) {
         return switch (shapeType) {
             case Circle -> new Circle();
-            case Rectangle -> new Rectangle();
+            case Square -> new Square();
         };
     }
 
     public static Shape getShape(ShapeType shapeType, Color color, double size, double x, double y) {
         return switch (shapeType) {
             case Circle -> new Circle(color, size, x, y);
-            case Rectangle -> new Rectangle(color, size, x, y);
+            case Square -> new Square(color, size, x, y);
         };
     }
 

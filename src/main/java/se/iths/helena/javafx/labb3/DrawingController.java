@@ -29,7 +29,7 @@ public class DrawingController {
 
     public void initialize() {
         model = new Model();
-        model.setInitialValues(ShapeType.Rectangle, Color.ROSYBROWN, 100f);
+        model.setInitialValues(ShapeType.Square, Color.ROSYBROWN, 100f);
 
         colorPicker.valueProperty().bindBidirectional(model.colorProperty());
         sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());

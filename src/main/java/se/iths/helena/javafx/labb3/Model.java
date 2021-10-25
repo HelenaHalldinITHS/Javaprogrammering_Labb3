@@ -18,8 +18,8 @@ public class Model {
     public Model() {
         this.color = new SimpleObjectProperty<>();
         this.size = new SimpleFloatProperty();
-        inSelectMode = new SimpleBooleanProperty(false);
-        this.selectedShapeType = new SimpleObjectProperty<>(ShapeType.Rectangle);
+        inSelectMode = new SimpleBooleanProperty();
+        this.selectedShapeType = new SimpleObjectProperty<>();
     }
 
     public void setInitialValues(ShapeType shape, Color color, Float size){
