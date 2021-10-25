@@ -33,9 +33,9 @@
             </ComboBox>
             <ColorPicker fx:id="colorPicker" layoutX="7.0" layoutY="95.0"/>
             <Text fx:id="sizeText" layoutX="35.0" layoutY="34.0" text="Size:"/>
-            <Slider fx:id="sizeSlider" blockIncrement="1" majorTickUnit="20" showTickLabels="true" showTickMarks="true" />
-            <Button fx:id="undoButton" mnemonicParsing="false" onAction="#onUndoButtonClicked" text="undo"/>
+            <Slider fx:id="sizeSlider" majorTickUnit="50" max="200" showTickLabels="true" showTickMarks="true" />
             <CheckBox fx:id="selectModeCheckBox" mnemonicParsing="false" text="select mode"/>
+            <Button fx:id="undoButton" mnemonicParsing="false" onAction="#onUndoButtonClicked" text="undo"/>
         </ToolBar>
     </AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="185.0" prefWidth="291.0">
