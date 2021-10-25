@@ -16,13 +16,13 @@
 <?import javafx.collections.FXCollections?>
 <?import se.iths.helena.javafx.labb3.ShapeType?>
 
-<SplitPane dividerPositions="0.10" orientation="VERTICAL" maxHeight="-Infinity" maxWidth="-Infinity"
+<SplitPane styleClass="root" dividerPositions="0.10" orientation="VERTICAL" maxHeight="-Infinity" maxWidth="-Infinity"
            minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
            xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="se.iths.helena.javafx.labb3.DrawingController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="91.0" prefWidth="440.0">
         <ToolBar prefHeight="40.0" prefWidth="443.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                 AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                 AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="5.0">
             <ComboBox fx:id="comboBox" value="Square">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
@@ -34,7 +34,9 @@
             <ColorPicker fx:id="colorPicker" layoutX="7.0" layoutY="95.0"/>
             <Text fx:id="sizeText" layoutX="35.0" layoutY="34.0" text="Size:"/>
             <Slider fx:id="sizeSlider" majorTickUnit="50" max="200" showTickLabels="true" showTickMarks="true" />
-            <CheckBox fx:id="selectModeCheckBox" mnemonicParsing="false" text="select mode"/>
+            <CheckBox fx:id="selectModeCheckBox" mnemonicParsing="false" text="Select mode"/>
+        </ToolBar>
+        <ToolBar AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <Button fx:id="undoButton" mnemonicParsing="false" onAction="#onUndoButtonClicked" text="undo"/>
         </ToolBar>
     </AnchorPane>
