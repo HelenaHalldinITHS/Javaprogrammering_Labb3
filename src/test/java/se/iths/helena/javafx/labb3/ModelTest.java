@@ -4,6 +4,7 @@ import javafx.scene.paint.Color;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ModelTest {
 
@@ -13,16 +14,16 @@ class ModelTest {
 
         model.setInitialValues(ShapeType.Square, Color.BLUE,50f);
 
-        assertEquals(Color.BLUE, model.getColor());
-        assertEquals(ShapeType.Square, model.getSelectedShapeType());
-        assertEquals(50f, model.getSize());
+        assertThat(model.getColor()).isEqualTo(Color.BLUE);
+        assertThat(model.getSelectedShapeType()).isEqualTo(ShapeType.Square);
+        assertThat(model.getSize()).isEqualTo(50f);
     }
 
     @Test
     void modelShouldInitiallyNotBeInSelectMode(){
         Model model = new Model();
 
-        assertFalse(model.isInSelectMode());
+        assertThat(model.isInSelectMode()).isFalse();
     }
 
     @Test
@@ -32,20 +33,19 @@ class ModelTest {
 
         model.addShape(shape);
 
-        assertTrue(model.getShapes().contains(shape));
+        assertThat(model.getShapes()).contains(shape);
     }
 
     @Test
-    void replacingAShapeShouldAddNewShapeAndRemoveNewShapeFromListOfShapes(){
+    void replacingAShapeShouldAddNewShapeAndRemoveNewShapeFromListOfShapes() {
         Model model = new Model();
         Shape oldShape = ShapeFactory.getCircle(Color.BLUE, 50f, 30, -50);
         model.addShape(oldShape);
         Shape newShape = ShapeFactory.getCircle(Color.RED, 10f, 30, -30);
 
-        model.replaceShape(newShape,oldShape);
+        model.replaceShape(newShape, oldShape);
 
-        assertTrue(model.getShapes().contains(newShape));
-        assertFalse(model.getShapes().contains(oldShape));
+        assertThat(model.getShapes()).contains(newShape).doesNotContain(oldShape);
     }
 
 }
