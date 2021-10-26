@@ -2,7 +2,6 @@ package se.iths.helena.javafx.labb3;
 
 import javafx.beans.property.*;
 import javafx.scene.paint.Color;
-
 import java.util.*;
 
 public class Model {
@@ -11,8 +10,8 @@ public class Model {
     private final ObjectProperty<ShapeType> selectedShapeType;
     private final BooleanProperty inSelectMode;
 
-    private List<Shape> shapes = new ArrayList<>();
-    private Deque<Shape> history = new ArrayDeque<>();
+    private final List<Shape> shapes = new ArrayList<>();
+    private final Deque<Shape> history = new ArrayDeque<>();
     private final Map<Shape, Shape> replacements = new HashMap<>();
 
 
@@ -34,11 +33,11 @@ public class Model {
     }
 
     public ShapeType getSelectedShapeType() {
-        return this.selectedShapeType.getValue();
+        return selectedShapeType.getValue();
     }
 
     public ObjectProperty<ShapeType> selectedShapeTypeProperty() {
-        return this.selectedShapeType;
+        return selectedShapeType;
     }
 
     public void setInSelectMode(boolean inSelectMode) {
@@ -53,26 +52,12 @@ public class Model {
         return inSelectMode;
     }
 
-
     public List<Shape> getShapes() {
         return shapes;
     }
 
-    public Deque<Shape> getHistory() {
-        return history;
-    }
-
-    public void setHistory(Deque<Shape> history) {
-        this.history = history;
-    }
-
-    public void setShapes(List<Shape> shapes) {
-        this.shapes = shapes;
-    }
-
-
     public Color getColor() {
-        return color.get();
+        return color.getValue();
     }
 
     public ObjectProperty<Color> colorProperty() {
@@ -80,23 +65,19 @@ public class Model {
     }
 
     public void setColor(Color color) {
-        this.color.set(color);
+        this.color.setValue(color);
     }
 
     public Float getSize() {
-        return size.get();
+        return size.getValue();
     }
 
     public FloatProperty sizeProperty() {
         return size;
     }
 
-    public void setSize(Float size) {
-        this.size.set(size);
-    }
-
-    public Map<Shape, Shape> getReplacements() {
-        return replacements;
+    public void setSize(float size) {
+        this.size.setValue(size);
     }
 
     public void replaceShape(Shape newShape, Shape oldShape) {
@@ -114,6 +95,7 @@ public class Model {
     public void undo() {
         Shape lastAddedShape = history.pop();
         shapes.remove(lastAddedShape);
+
         if (replacements.containsKey(lastAddedShape)) {
             shapes.add(replacements.get(lastAddedShape));
             replacements.remove(lastAddedShape);
