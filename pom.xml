@@ -25,7 +25,6 @@
             <artifactId>javafx-fxml</artifactId>
             <version>17-ea+11</version>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -36,6 +35,12 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
             <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.21.0</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -54,18 +59,33 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.6</version>
-                <executions>
-                    <execution>
-                        <!-- Default configuration for running with: mvn clean javafx:run -->
-                        <id>default-cli</id>
-                        <configuration>
-                            <mainClass>se.iths.helena.javafx.labb3/se.iths.helena.javafx.labb3.DrawingApplication
-                            </mainClass>
-                        </configuration>
-                    </execution>
-                </executions>
+                <version>0.0.8</version>
+                <configuration>
+                    <stripDebug>true</stripDebug>
+                    <compress>2</compress>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <noManPages>true</noManPages>
+                    <launcher>hellofx</launcher>
+                    <jlinkImageName>hello</jlinkImageName>
+                    <jlinkZipName>hellozip</jlinkZipName>
+                    <mainClass>se.iths.helena.javafx.labb3/se.iths.helena.javafx.labb3.DrawingApplication</mainClass>
+                </configuration>
             </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.openjfx</groupId>-->
+<!--                <artifactId>javafx-maven-plugin</artifactId>-->
+<!--                <version>0.0.6</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        &lt;!&ndash; Default configuration for running with: mvn clean javafx:run &ndash;&gt;-->
+<!--                        <id>default-cli</id>-->
+<!--                        <configuration>-->
+<!--                            <mainClass>se.iths.helena.javafx.labb3/se.iths.helena.javafx.labb3.DrawingApplication-->
+<!--                            </mainClass>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 </project>

@@ -3,16 +3,15 @@ package se.iths.helena.javafx.labb3;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class ModelTest {
 
     @Test
-    void usingMethodToSetInitialValuesToModelShouldSetSaidValues(){
+    void usingMethodToSetInitialValuesToModelShouldSetSaidValues() {
         Model model = new Model();
 
-        model.setInitialValues(ShapeType.Square, Color.BLUE,50f);
+        model.setInitialValues(ShapeType.Square, Color.BLUE, 50f);
 
         assertThat(model.getColor()).isEqualTo(Color.BLUE);
         assertThat(model.getSelectedShapeType()).isEqualTo(ShapeType.Square);
@@ -20,14 +19,14 @@ class ModelTest {
     }
 
     @Test
-    void modelShouldInitiallyNotBeInSelectMode(){
+    void modelShouldInitiallyNotBeInSelectMode() {
         Model model = new Model();
 
         assertThat(model.isInSelectMode()).isFalse();
     }
 
     @Test
-    void addingAShapeShouldPutSaidShapeInListOfShapes(){
+    void addingAShapeShouldPutSaidShapeInListOfShapes() {
         Model model = new Model();
         Shape shape = ShapeFactory.getCircle(Color.BLUE, 50f, 30, -50);
 
@@ -47,5 +46,6 @@ class ModelTest {
 
         assertThat(model.getShapes()).contains(newShape).doesNotContain(oldShape);
     }
+
 
 }

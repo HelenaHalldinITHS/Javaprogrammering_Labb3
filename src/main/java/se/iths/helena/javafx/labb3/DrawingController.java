@@ -9,8 +9,10 @@ import javafx.scene.text.Text;
 
 
 public class DrawingController {
+
     Model model;
 
+    public Button saveButton;
     public ComboBox<ShapeType> comboBox;
     public CheckBox selectModeCheckBox;
     public ResizableCanvas canvas;
@@ -84,4 +86,8 @@ public class DrawingController {
         draw();
     }
 
+    public void onSaveButtonClicked(ActionEvent actionEvent) {
+        SvgConverter svgConverter = new SvgConverter();
+        svgConverter.save(model);
+    }
 }
