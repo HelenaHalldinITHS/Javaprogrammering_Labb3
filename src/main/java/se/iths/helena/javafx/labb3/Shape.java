@@ -35,4 +35,5 @@ public abstract class Shape implements DrawableInJavaFx {
     public abstract boolean coordinatesInShapesArea(double x, double y);
     public abstract Shape changeLook(Color color, double size);
     public abstract void draw(GraphicsContext gc);
+    public abstract String getAsSvg();
 }

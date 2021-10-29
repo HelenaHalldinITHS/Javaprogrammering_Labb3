@@ -27,4 +27,15 @@ public class Circle extends Shape {
         gc.setFill(this.getColor());
         gc.fillOval(this.getX()-radie,this.getY()-radie,this.getSize(),this.getSize());
     }
+
+    @Override
+    public String getAsSvg() {
+        return "<"
+                + "circle"
+                + " cx=\"" + getX() + "\""
+                + " cy=\"" + getY() + "\""
+                + " r=\"" + getSize() / 2 + "\""
+                + " fill=\"rgb(" + getColor().getRed()*100 + "%, " + getColor().getGreen()*100 + "%, " + getColor().getBlue()*100 + "%)\""
+                + " />";
+    }
 }
