@@ -1,19 +1,16 @@
 package se.iths.helena.javafx.labb3;
 
-import javafx.scene.paint.Color;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SvgConverter {
+public class SvgWriter {
     private static final String homeFolder = System.getProperty("user.home");
 
     public void save(Model model) {
-        Path path = Path.of(homeFolder, "Labb3", "shapes.svg");
+        Path path = Path.of(homeFolder, "shapes.svg");
         List<String> svg = getSvg(model);
         writeToFile(path, svg);
     }
@@ -24,7 +21,7 @@ public class SvgConverter {
                 "xmlns=\"http://www.w3.org/2000/svg\" " +
                 "version=\"1.1\"\n " +
                 "width=\"800.0\" " +
-                "height=\"600.0\">"); //OSÄKER PÅ DENNA!!
+                "height=\"600.0\">");
         model.getShapes().forEach(shape -> strings.add(shape.getAsSvg()));
         strings.add("</svg>");
         return strings;

@@ -87,7 +87,7 @@ public class DrawingController {
     }
 
     public void onSaveButtonClicked(ActionEvent actionEvent) {
-        SvgConverter svgConverter = new SvgConverter();
-        svgConverter.save(model);
+        SvgWriter svgWriter = new SvgWriter();
+        svgWriter.save(model);
     }
 }
