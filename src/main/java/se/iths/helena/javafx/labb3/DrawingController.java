@@ -32,8 +32,8 @@ public class DrawingController {
     public void initialize() {
         model = new Model();
         model.setInitialValues(ShapeType.Square, Color.ROSYBROWN, 100f);
-        colorPicker.valueProperty().bindBidirectional(model.colorProperty());
-        sizeSlider.valueProperty().bindBidirectional(model.sizeProperty());
+        colorPicker.valueProperty().bindBidirectional(model.selectedColorProperty());
+        sizeSlider.valueProperty().bindBidirectional(model.selectedSizeProperty());
         comboBox.valueProperty().bindBidirectional(model.selectedShapeTypeProperty());
         selectModeCheckBox.selectedProperty().bindBidirectional(model.inSelectModeProperty());
         canvas.widthProperty().addListener(observable -> draw());
@@ -55,7 +55,7 @@ public class DrawingController {
     }
 
     private void setNewShapeFromSelectMode(Shape shape) {
-        Shape newShape = shape.changeLook(model.getColor(), model.getSize());
+        Shape newShape = shape.changeLook(model.getSelectedColor(), model.getSelectedSize());
         model.replaceShape(newShape, shape);
     }
 
@@ -67,8 +67,8 @@ public class DrawingController {
 
     private Shape getNewShapeBySelectedType(MouseEvent mouseEvent){
         return switch (model.getSelectedShapeType()){
-            case Square -> ShapeFactory.getSquare(model.getColor(),model.getSize(),mouseEvent.getX(),mouseEvent.getY());
-            case Circle -> ShapeFactory.getCircle(model.getColor(),model.getSize(),mouseEvent.getX(),mouseEvent.getY());
+            case Square -> ShapeFactory.getSquare(model.getSelectedColor(),model.getSelectedSize(),mouseEvent.getX(),mouseEvent.getY());
+            case Circle -> ShapeFactory.getCircle(model.getSelectedColor(),model.getSelectedSize(),mouseEvent.getX(),mouseEvent.getY());
         };
     }
 

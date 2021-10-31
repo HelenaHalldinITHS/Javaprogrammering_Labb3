@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SvgWriter {
-    private static final String homeFolder = System.getProperty("user.home");
 
     public void save(Model model) {
-        Path path = Path.of(homeFolder, "shapes.svg");
+        Path path = Path.of(System.getProperty("user.home"), "shapes.svg");
         List<String> svg = getSvg(model);
         writeToFile(path, svg);
     }
