@@ -13,9 +13,9 @@ class ModelTest {
 
         model.setInitialValues(ShapeType.Square, Color.BLUE, 50f);
 
-        assertThat(model.getColor()).isEqualTo(Color.BLUE);
+        assertThat(model.getSelectedColor()).isEqualTo(Color.BLUE);
         assertThat(model.getSelectedShapeType()).isEqualTo(ShapeType.Square);
-        assertThat(model.getSize()).isEqualTo(50f);
+        assertThat(model.getSelectedSize()).isEqualTo(50f);
     }
 
     @Test

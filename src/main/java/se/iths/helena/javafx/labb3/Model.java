@@ -5,8 +5,8 @@ import javafx.scene.paint.Color;
 import java.util.*;
 
 public class Model {
-    private final ObjectProperty<Color> color;
-    private final FloatProperty size;
+    private final ObjectProperty<Color> selectedColor;
+    private final FloatProperty selectedSize;
     private final ObjectProperty<ShapeType> selectedShapeType;
     private final BooleanProperty inSelectMode;
 
@@ -16,16 +16,16 @@ public class Model {
 
 
     public Model() {
-        this.color = new SimpleObjectProperty<>();
-        this.size = new SimpleFloatProperty();
+        this.selectedColor = new SimpleObjectProperty<>();
+        this.selectedSize = new SimpleFloatProperty();
         inSelectMode = new SimpleBooleanProperty();
         this.selectedShapeType = new SimpleObjectProperty<>();
     }
 
     public void setInitialValues(ShapeType shape, Color color, Float size) {
         this.selectedShapeType.setValue(shape);
-        this.color.setValue(color);
-        this.size.setValue(size);
+        this.selectedColor.setValue(color);
+        this.selectedSize.setValue(size);
     }
 
     public void setSelectedShapeType(ShapeType selectedShapeType) {
@@ -56,29 +56,29 @@ public class Model {
         return shapes;
     }
 
-    public Color getColor() {
-        return color.getValue();
+    public Color getSelectedColor() {
+        return selectedColor.getValue();
     }
 
-    public ObjectProperty<Color> colorProperty() {
-        return color;
+    public ObjectProperty<Color> selectedColorProperty() {
+        return selectedColor;
     }
 
-    public void setColor(Color color) {
-        this.color.setValue(color);
+    public void setSelectedColor(Color selectedColor) {
+        this.selectedColor.setValue(selectedColor);
     }
 
-    public Float getSize() {
-        return size.getValue();
+    public Float getSelectedSize() {
+        return selectedSize.getValue();
     }
 
-    public FloatProperty sizeProperty() {
-        return size;
+    public FloatProperty selectedSizeProperty() {
+        return selectedSize;
     }
 
 
-    public void setSize(float size) {
-        this.size.setValue(size);
+    public void setSelectedSize(float selectedSize) {
+        this.selectedSize.setValue(selectedSize);
     }
 
     public void replaceShape(Shape newShape, Shape oldShape) {
