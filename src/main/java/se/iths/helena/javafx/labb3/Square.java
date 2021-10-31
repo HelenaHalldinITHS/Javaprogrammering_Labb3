@@ -42,7 +42,7 @@ public class Square extends Shape {
                 + " height=\"" + getSize() + "\""
                 + " fill=\"rgb(" + getColor().getRed()*100 + "%, " + getColor().getGreen()*100 + "%, " + getColor().getBlue()*100 + "%)\""
                 + " />";
-    } // "rgb(39.2%, 58.4%, 92.9%)"/>
+    }
 
 
 }

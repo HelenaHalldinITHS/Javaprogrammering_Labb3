@@ -3,7 +3,7 @@ package se.iths.helena.javafx.labb3;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public abstract class Shape implements DrawableInJavaFx {
+public abstract class Shape implements DrawableInJavaFx, ConvertibleToSvg {
     private final Color color;
     private final double x;
     private final double y;
@@ -35,5 +35,4 @@ public abstract class Shape implements DrawableInJavaFx {
     public abstract boolean coordinatesInShapesArea(double x, double y);
     public abstract Shape changeLook(Color color, double size);
     public abstract void draw(GraphicsContext gc);
-    public abstract String getAsSvg();
 }
