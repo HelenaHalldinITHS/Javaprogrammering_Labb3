@@ -1,12 +1,17 @@
 package se.iths.helena.javafx.labb3;
 
+import javafx.application.Platform;
 import javafx.beans.property.*;
+import javafx.collections.ArrayChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 
 import java.io.*;
 import java.net.Socket;
-import java.net.UnknownHostException;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Model {
     private final ObjectProperty<Color> selectedColor;
@@ -14,17 +19,25 @@ public class Model {
     private final ObjectProperty<ShapeType> selectedShapeType;
     private final BooleanProperty inSelectMode;
 
-    private final List<Shape> shapes = new ArrayList<>();
+    private final ObservableList<Shape> shapes;
     private final Deque<Shape> history = new ArrayDeque<>();
     private final Map<Shape, Shape> replacements = new HashMap<>();
+    private final ServerConnector serverConnector;
 
+
+    public ObservableList<Shape> shapesProperty(){
+        return shapes;
+    }
 
     public Model() {
         this.selectedColor = new SimpleObjectProperty<>();
         this.selectedSize = new SimpleFloatProperty();
         inSelectMode = new SimpleBooleanProperty();
         this.selectedShapeType = new SimpleObjectProperty<>();
+        this.shapes = FXCollections.observableArrayList();
+        this.serverConnector = new ServerConnector();
     }
+
 
     public void setInitialValues(ShapeType shape, Color color, Float size) {
         this.selectedShapeType.setValue(shape);
@@ -114,31 +127,13 @@ public class Model {
     }
 
 
-    private Socket socket;
-    private PrintWriter writer;
-    private BufferedReader reader;
-    private BooleanProperty connected = new SimpleBooleanProperty();
-
-    public void connect() {
-        String myComputer = "localhost";
-        String martinsComputer = "192.168.1.137";
-
-        try {
-            socket = new Socket(martinsComputer, 8000);
-            OutputStream output = socket.getOutputStream();
-            writer = new PrintWriter(output, true);
-
-            InputStream input = socket.getInputStream();
-            reader = new BufferedReader(new InputStreamReader(input));
-            connected.set(true);
-            System.out.println("Connected to server");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void connect(){
+        serverConnector.connect(shapes);
     }
 
-    public void sendToServer(Shape shape) {
-        if (connected.getValue())
-            writer.println(shape.getAsSvg());
+    public void sendToServer (Shape shape){
+       serverConnector.sendToServer(shape);
+
     }
+
 }
