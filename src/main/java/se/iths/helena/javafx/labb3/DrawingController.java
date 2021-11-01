@@ -9,9 +9,9 @@ import javafx.scene.text.Text;
 
 
 public class DrawingController {
-
     Model model;
 
+    public Button serverButton;
     public Button saveButton;
     public ComboBox<ShapeType> comboBox;
     public CheckBox selectModeCheckBox;
@@ -62,6 +62,7 @@ public class DrawingController {
     private void canvasClickedInNormalMode(MouseEvent mouseEvent) {
         Shape newShape = getNewShapeBySelectedType(mouseEvent);
         model.addShape(newShape);
+        model.sendToServer(newShape);
 
     }
 
@@ -89,5 +90,9 @@ public class DrawingController {
     public void onSaveButtonClicked(ActionEvent actionEvent) {
         SvgWriter svgWriter = new SvgWriter();
         svgWriter.save(model);
+    }
+
+    public void onConnectToServerClicked(ActionEvent actionEvent) {
+        model.connect();
     }
 }

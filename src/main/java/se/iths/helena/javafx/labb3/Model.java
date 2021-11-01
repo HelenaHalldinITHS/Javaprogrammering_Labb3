@@ -2,6 +2,10 @@ package se.iths.helena.javafx.labb3;
 
 import javafx.beans.property.*;
 import javafx.scene.paint.Color;
+
+import java.io.*;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.*;
 
 public class Model {
@@ -85,7 +89,7 @@ public class Model {
         shapes.add(newShape);
         shapes.remove(oldShape);
         history.push(newShape);
-        replacements.put(newShape,oldShape);
+        replacements.put(newShape, oldShape);
     }
 
     public void addShape(Shape newShape) {
@@ -103,9 +107,38 @@ public class Model {
         }
     }
 
-    public Optional<Shape> getShapeByCoordinates(double x,double y) {
+    public Optional<Shape> getShapeByCoordinates(double x, double y) {
         return shapes.stream()
                 .filter(shape -> shape.coordinatesInShapesArea(x, y))
                 .reduce((first, second) -> second);
+    }
+
+
+    private Socket socket;
+    private PrintWriter writer;
+    private BufferedReader reader;
+    private BooleanProperty connected = new SimpleBooleanProperty();
+
+    public void connect() {
+        String myComputer = "localhost";
+        String martinsComputer = "192.168.1.137";
+
+        try {
+            socket = new Socket(martinsComputer, 8000);
+            OutputStream output = socket.getOutputStream();
+            writer = new PrintWriter(output, true);
+
+            InputStream input = socket.getInputStream();
+            reader = new BufferedReader(new InputStreamReader(input));
+            connected.set(true);
+            System.out.println("Connected to server");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendToServer(Shape shape) {
+        if (connected.getValue())
+            writer.println(shape.getAsSvg());
     }
 }
