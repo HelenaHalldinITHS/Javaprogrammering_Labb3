@@ -1,5 +1,6 @@
 package se.iths.helena.javafx.labb3;
 
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
@@ -38,6 +39,7 @@ public class DrawingController {
         selectModeCheckBox.selectedProperty().bindBidirectional(model.inSelectModeProperty());
         canvas.widthProperty().addListener(observable -> draw());
         canvas.heightProperty().addListener(observable -> draw());
+        model.shapesProperty().addListener((ListChangeListener<Shape>) change -> draw());
     }
 
     public void onCanvasClicked(MouseEvent mouseEvent) {
