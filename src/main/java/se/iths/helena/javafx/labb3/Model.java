@@ -41,20 +41,12 @@ public class Model {
         this.selectedSize.setValue(size);
     }
 
-    public void setSelectedShapeType(ShapeType selectedShapeType) {
-        this.selectedShapeType.setValue(selectedShapeType);
-    }
-
     public ShapeType getSelectedShapeType() {
         return selectedShapeType.getValue();
     }
 
     public ObjectProperty<ShapeType> selectedShapeTypeProperty() {
         return selectedShapeType;
-    }
-
-    public void setInSelectMode(boolean inSelectMode) {
-        this.inSelectMode.setValue(inSelectMode);
     }
 
     public boolean isInSelectMode() {
@@ -77,9 +69,6 @@ public class Model {
         return selectedColor;
     }
 
-    public void setSelectedColor(Color selectedColor) {
-        this.selectedColor.setValue(selectedColor);
-    }
 
     public Float getSelectedSize() {
         return selectedSize.getValue();
@@ -87,11 +76,6 @@ public class Model {
 
     public FloatProperty selectedSizeProperty() {
         return selectedSize;
-    }
-
-
-    public void setSelectedSize(float selectedSize) {
-        this.selectedSize.setValue(selectedSize);
     }
 
     public void replaceShape(Shape newShape, Shape oldShape) {

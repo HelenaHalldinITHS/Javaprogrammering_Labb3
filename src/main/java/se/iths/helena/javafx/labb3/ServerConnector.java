@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
-import javafx.scene.paint.Color;
 
 import java.io.*;
 import java.net.Socket;
