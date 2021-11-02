@@ -24,7 +24,7 @@ public class ServerConnector {
             return;
 
         try {
-            socket = new Socket(martinsComputer, 8000);
+            socket = new Socket(myComputer, 8001);
             OutputStream output = socket.getOutputStream();
             writer = new PrintWriter(output, true);
 
@@ -49,7 +49,11 @@ public class ServerConnector {
             while (true) {
                 String line = reader.readLine();
                 System.out.println(line);
-                Platform.runLater(() -> shapes.add(ShapeFactory.getShapeFromSvg(line))); //Tillfällig - Skickar till javaFx tråden
+
+                if (!line.contains("[you]") && !line.contains("[SERVER]")) {
+                    String[] separate = line.split("]");
+                    Platform.runLater(() -> shapes.add(ShapeFactory.getShapeFromSvg(separate[1].trim())));
+                }
             }
         } catch (IOException e) {
             System.out.println("I/O error. Disconnected.");

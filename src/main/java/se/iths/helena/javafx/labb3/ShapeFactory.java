@@ -35,7 +35,7 @@ public class ShapeFactory {
         String[] strings = svg.split("\"");
         double x = Double.parseDouble(strings[1]);
         double y = Double.parseDouble(strings[3]);
-        double size = Double.parseDouble(strings[5])*2;
+        double size = Double.parseDouble(strings[5]);
         Color color = Color.valueOf(strings[9].substring(1));
 
         return getSquare(color, size, x, y);
