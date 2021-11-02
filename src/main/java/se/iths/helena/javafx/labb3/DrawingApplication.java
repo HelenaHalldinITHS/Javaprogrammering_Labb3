@@ -8,8 +8,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class DrawingApplication extends Application {
+    private Stage stage;
+
     @Override
     public void start(Stage stage) throws IOException {
+        this.stage = stage;
         FXMLLoader fxmlLoader = new FXMLLoader(DrawingApplication.class.getResource("drawing-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 700);
         stage.setTitle("Helenas drawing application");
@@ -19,5 +22,9 @@ public class DrawingApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+    }
+
+    public Stage getStage(){
+        return stage;
     }
 }

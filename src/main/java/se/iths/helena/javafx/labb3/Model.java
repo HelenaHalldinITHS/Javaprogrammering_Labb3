@@ -1,17 +1,13 @@
 package se.iths.helena.javafx.labb3;
 
-import javafx.application.Platform;
+
 import javafx.beans.property.*;
-import javafx.collections.ArrayChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
 
-import java.io.*;
-import java.net.Socket;
 import java.util.*;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+
 
 public class Model {
     private final ObjectProperty<Color> selectedColor;

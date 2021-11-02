@@ -35,12 +35,12 @@ public class ServerConnector {
             System.out.println("Connected to server");
             executorService.submit(() -> networkHandler(shapes));
 
-        } catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void sendToServer (Shape shape){
+    public void sendToServer(Shape shape) {
         if (connected.getValue())
             writer.println(shape.getAsSvg());
     }
@@ -50,7 +50,7 @@ public class ServerConnector {
             while (true) {
                 String line = reader.readLine();
                 System.out.println(line);
-                Platform.runLater( () -> shapes.add(ShapeFactory.getShapeFromSvg(line))); //Tillfällig - Skickar till javaFx tråden
+                Platform.runLater(() -> shapes.add(ShapeFactory.getShapeFromSvg(line))); //Tillfällig - Skickar till javaFx tråden
             }
         } catch (IOException e) {
             System.out.println("I/O error. Disconnected.");
