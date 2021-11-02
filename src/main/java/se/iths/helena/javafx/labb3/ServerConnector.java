@@ -24,7 +24,7 @@ public class ServerConnector {
             return;
 
         try {
-            socket = new Socket(myComputer, 8001);
+            socket = new Socket(myComputer, 8000);
             OutputStream output = socket.getOutputStream();
             writer = new PrintWriter(output, true);
 

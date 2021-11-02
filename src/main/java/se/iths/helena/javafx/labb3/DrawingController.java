@@ -95,6 +95,7 @@ public class DrawingController {
     }
 
     public void onConnectToServerClicked(ActionEvent actionEvent) {
+        undoButton.setDisable(true);
         model.connect();
     }
 }
