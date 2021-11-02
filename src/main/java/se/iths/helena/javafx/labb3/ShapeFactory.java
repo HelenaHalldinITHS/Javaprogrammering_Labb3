@@ -13,27 +13,31 @@ public class ShapeFactory {
         return new Circle(color, size, x, y);
     }
 
-    /*
-    OBS!!! EJ KLAR
-     */
     public static Shape getShapeFromSvg(String svg){
-
-        double x = 300;
-        double y = 300;
-        double size = 40;
-        Color color = Color.BLUE;
-        ShapeType shapeType = getShapeType(svg);
-
-        return switch (shapeType) {
-            case Circle -> ShapeFactory.getCircle(color, size, x, y);
-            case Square -> ShapeFactory.getSquare(color, size, x, y);
-        };
+        if (svg.contains("circle"))
+            return getCircleFromSvg(svg);
+        else
+            return getSquareFromSvg(svg);
     }
 
-    private static ShapeType getShapeType(String svg) {
-       if (svg.contains("circle"))
-            return ShapeType.Circle;
-       else
-           return ShapeType.Square;
+
+    private static Shape getCircleFromSvg(String svg){
+        String[] strings = svg.split("\"");
+        double x = Double.parseDouble(strings[1]);
+        double y = Double.parseDouble(strings[3]);
+        double size = Double.parseDouble(strings[5])*2;
+        Color color = Color.valueOf(strings[7].substring(1));
+
+        return getCircle(color, size, x, y);
+    }
+
+    private static Shape getSquareFromSvg(String svg){
+        String[] strings = svg.split("\"");
+        double x = Double.parseDouble(strings[1]);
+        double y = Double.parseDouble(strings[3]);
+        double size = Double.parseDouble(strings[5])*2;
+        Color color = Color.valueOf(strings[9].substring(1));
+
+        return getSquare(color, size, x, y);
     }
 }

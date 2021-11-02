@@ -30,12 +30,14 @@ public class Circle extends Shape {
 
     @Override
     public String getAsSvg() {
+        String color = "#" + getColor().toString().subSequence(2,10);
+
         return "<"
                 + "circle"
                 + " cx=\"" + getX() + "\""
                 + " cy=\"" + getY() + "\""
                 + " r=\"" + getSize() / 2 + "\""
-                + " fill=\"rgb(" + getColor().getRed()*100 + "%, " + getColor().getGreen()*100 + "%, " + getColor().getBlue()*100 + "%)\""
+                + " fill=\"" + color + "\""
                 + " />";
     }
 }

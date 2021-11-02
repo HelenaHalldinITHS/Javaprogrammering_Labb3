@@ -34,13 +34,15 @@ public class Square extends Shape {
 
     @Override
     public String getAsSvg() {
+        String color = "#" + getColor().toString().subSequence(2,10);
+
         return  "<"
                 + "rect"
                 + " x=\"" + getX() + "\""
                 + " y=\"" + getY() + "\""
                 + " width=\"" + getSize() + "\""
                 + " height=\"" + getSize() + "\""
-                + " fill=\"rgb(" + getColor().getRed()*100 + "%, " + getColor().getGreen()*100 + "%, " + getColor().getBlue()*100 + "%)\""
+                + " fill=\"" + color + "\""
                 + " />";
     }
 
