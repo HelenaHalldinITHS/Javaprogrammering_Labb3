@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SvgWriter {
+    FileChooser fileChooser = new FileChooser();
+
 
     public void save(Model model) {
         Path path = getPath();
@@ -37,7 +39,6 @@ public class SvgWriter {
 
 
     private Path getPath(){
-        FileChooser fileChooser = new FileChooser();
         return Path.of(fileChooser.showSaveDialog(new DrawingApplication().getStage()).getPath());
     }
 }
