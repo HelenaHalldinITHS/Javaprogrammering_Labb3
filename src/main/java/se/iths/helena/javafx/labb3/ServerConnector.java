@@ -11,20 +11,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class ServerConnector {
-    private Socket socket;
     private PrintWriter writer;
     private BufferedReader reader;
-    private BooleanProperty connected = new SimpleBooleanProperty();
-    private ExecutorService executorService = Executors.newSingleThreadExecutor();
-    private String myComputer = "localhost";
-    private String martinsComputer = "192.168.1.137";
+    private final BooleanProperty connected = new SimpleBooleanProperty();
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private final String martinsComputer = "192.168.1.137";
 
     public void connect(ObservableList<Shape> shapes) {
         if (connected.get())
             return;
 
         try {
-            socket = new Socket(myComputer, 8000);
+            Socket socket = new Socket("localhost", 8000);
             OutputStream output = socket.getOutputStream();
             writer = new PrintWriter(output, true);
 
