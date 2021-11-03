@@ -1,9 +1,8 @@
 package se.iths.helena.javafx.labb3;
-
-
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 import java.util.*;
@@ -19,11 +18,7 @@ public class Model {
     private final Deque<Shape> history = new ArrayDeque<>();
     private final Map<Shape, Shape> replacements = new HashMap<>();
     private final ServerConnector serverConnector;
-
-
-    public ObservableList<Shape> shapesProperty(){
-        return shapes;
-    }
+    private final SvgWriter svgWriter;
 
     public Model() {
         this.selectedColor = new SimpleObjectProperty<>();
@@ -32,6 +27,18 @@ public class Model {
         this.selectedShapeType = new SimpleObjectProperty<>();
         this.shapes = FXCollections.observableArrayList();
         this.serverConnector = new ServerConnector();
+        this.svgWriter = new SvgWriter();
+    }
+
+    public Model(SvgWriter svgWriter,ServerConnector serverConnector){
+        this.selectedColor = new SimpleObjectProperty<>();
+        this.selectedSize = new SimpleFloatProperty();
+        inSelectMode = new SimpleBooleanProperty();
+        this.selectedShapeType = new SimpleObjectProperty<>();
+        this.shapes = FXCollections.observableArrayList();
+
+        this.serverConnector = serverConnector;
+        this.svgWriter = svgWriter;
     }
 
 
@@ -39,6 +46,10 @@ public class Model {
         this.selectedShapeType.setValue(shape);
         this.selectedColor.setValue(color);
         this.selectedSize.setValue(size);
+    }
+
+    public ObservableList<Shape> shapesProperty(){
+        return shapes;
     }
 
     public ShapeType getSelectedShapeType() {
@@ -88,6 +99,7 @@ public class Model {
     public void addShape(Shape newShape) {
         shapes.add(newShape);
         history.push(newShape);
+        sendToServer(newShape);
     }
 
     public void undo() {
@@ -106,14 +118,24 @@ public class Model {
                 .reduce((first, second) -> second);
     }
 
-
     public void connect(){
         serverConnector.connect(shapes);
     }
 
     public void sendToServer (Shape shape){
        serverConnector.sendToServer(shape);
-
     }
+
+    public void writeToSvg() {
+        svgWriter.save(this);
+    }
+
+    public Shape getNewShape(double x, double y) {
+        return switch (getSelectedShapeType()){
+            case Square -> ShapeFactory.getSquare(getSelectedColor(),getSelectedSize(),x,y);
+            case Circle -> ShapeFactory.getCircle(getSelectedColor(),getSelectedSize(),x,y);
+        };
+    }
+
 
 }
