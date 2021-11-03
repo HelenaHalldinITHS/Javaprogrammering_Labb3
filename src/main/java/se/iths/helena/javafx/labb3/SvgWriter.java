@@ -1,6 +1,8 @@
 package se.iths.helena.javafx.labb3;
 
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,7 +11,6 @@ import java.util.List;
 
 public class SvgWriter {
     FileChooser fileChooser = new FileChooser();
-
 
     public void save(Model model) {
         Path path = getPath();
@@ -39,6 +40,6 @@ public class SvgWriter {
 
 
     private Path getPath(){
-        return Path.of(fileChooser.showSaveDialog(new DrawingApplication().getStage()).getPath());
+        return Path.of(fileChooser.showSaveDialog(new Stage()).getPath());
     }
 }
