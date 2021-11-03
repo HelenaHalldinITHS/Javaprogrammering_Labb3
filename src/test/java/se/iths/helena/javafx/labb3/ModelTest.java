@@ -9,10 +9,9 @@ class ModelTest {
 
     @Test
     void usingMethodToSetInitialValuesToModelShouldSetSaidValues() {
-        Model model = new Model();
+        Model model = new Model(new DummySvgWriter(), new DummyServerConnector());
 
         model.setInitialValues(ShapeType.Square, Color.BLUE, 50f);
-
         assertThat(model.getSelectedColor()).isEqualTo(Color.BLUE);
         assertThat(model.getSelectedShapeType()).isEqualTo(ShapeType.Square);
         assertThat(model.getSelectedSize()).isEqualTo(50f);
@@ -20,14 +19,14 @@ class ModelTest {
 
     @Test
     void modelShouldInitiallyNotBeInSelectMode() {
-        Model model = new Model();
+        Model model = new Model(new DummySvgWriter(), new DummyServerConnector());
 
         assertThat(model.isInSelectMode()).isFalse();
     }
 
     @Test
     void addingAShapeShouldPutSaidShapeInListOfShapes() {
-        Model model = new Model();
+        Model model = new Model(new DummySvgWriter(), new DummyServerConnector());
         Shape shape = ShapeFactory.getCircle(Color.BLUE, 50f, 30, -50);
 
         model.addShape(shape);
@@ -37,7 +36,7 @@ class ModelTest {
 
     @Test
     void replacingAShapeShouldAddNewShapeAndRemoveOldShapeFromListOfShapes() {
-        Model model = new Model();
+        Model model = new Model(new DummySvgWriter(), new DummyServerConnector());
         Shape oldShape = ShapeFactory.getCircle(Color.BLUE, 50f, 30, -50);
         model.addShape(oldShape);
         Shape newShape = ShapeFactory.getCircle(Color.RED, 10f, 30, -30);

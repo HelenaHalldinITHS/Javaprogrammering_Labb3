@@ -2,7 +2,6 @@ package se.iths.helena.javafx.labb3;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
 import java.util.*;
@@ -21,24 +20,23 @@ public class Model {
     private final SvgWriter svgWriter;
 
     public Model() {
-        this.selectedColor = new SimpleObjectProperty<>();
-        this.selectedSize = new SimpleFloatProperty();
+        selectedColor = new SimpleObjectProperty<>();
+        selectedSize = new SimpleFloatProperty();
         inSelectMode = new SimpleBooleanProperty();
-        this.selectedShapeType = new SimpleObjectProperty<>();
-        this.shapes = FXCollections.observableArrayList();
-        this.serverConnector = new ServerConnector();
-        this.svgWriter = new SvgWriter();
+        selectedShapeType = new SimpleObjectProperty<>();
+        shapes = FXCollections.observableArrayList();
+        serverConnector = new ServerConnector();
+        svgWriter = new SvgWriter();
     }
 
     public Model(SvgWriter svgWriter,ServerConnector serverConnector){
-        this.selectedColor = new SimpleObjectProperty<>();
-        this.selectedSize = new SimpleFloatProperty();
-        inSelectMode = new SimpleBooleanProperty();
-        this.selectedShapeType = new SimpleObjectProperty<>();
-        this.shapes = FXCollections.observableArrayList();
-
         this.serverConnector = serverConnector;
         this.svgWriter = svgWriter;
+        selectedColor = new SimpleObjectProperty<>();
+        selectedSize = new SimpleFloatProperty();
+        inSelectMode = new SimpleBooleanProperty();
+        selectedShapeType = new SimpleObjectProperty<>();
+        shapes = FXCollections.observableArrayList();
     }
 
 
