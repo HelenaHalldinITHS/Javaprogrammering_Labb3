@@ -36,7 +36,7 @@ class ModelTest {
     }
 
     @Test
-    void replacingAShapeShouldAddNewShapeAndRemoveNewShapeFromListOfShapes() {
+    void replacingAShapeShouldAddNewShapeAndRemoveOldShapeFromListOfShapes() {
         Model model = new Model();
         Shape oldShape = ShapeFactory.getCircle(Color.BLUE, 50f, 30, -50);
         model.addShape(oldShape);
