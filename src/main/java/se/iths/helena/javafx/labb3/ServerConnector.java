@@ -15,14 +15,13 @@ public class ServerConnector {
     private BufferedReader reader;
     private final BooleanProperty connected = new SimpleBooleanProperty();
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
-    private final String martinsComputer = "192.168.1.137";
 
     public void connect(ObservableList<Shape> shapes) {
         if (connected.get())
             return;
 
         try {
-            Socket socket = new Socket("localhost", 8000);
+            Socket socket = new Socket("178.174.162.51", 8000);
             OutputStream output = socket.getOutputStream();
             writer = new PrintWriter(output, true);
 
